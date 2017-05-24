@@ -15,4 +15,21 @@ const signUp = async (url, attributes) => {
   };
 };
 
-module.exports = { signUp };
+const signIn = async (url, attributes) => {
+  const fetchApi = FetchApi.create(url);
+  let { status, data, errors } = await fetchApi.post('/auth/sign_in', attributes);
+
+  if (_.has(errors, 'full_messages')) {
+    errors = errors.full_messages;
+  }
+
+  if (status === 'error' || _.some(errors)) {
+    throw new Error(_(errors).uniq().join('\n'));
+  }
+
+  return {
+    coordinatorsRepository: CoordinatorRepository.create(fetchApi),
+  };
+}
+
+module.exports = { signUp, signIn };

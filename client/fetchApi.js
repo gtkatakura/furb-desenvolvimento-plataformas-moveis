@@ -27,15 +27,20 @@ const create = (baseUrl, opts) => {
     });
 
     updateHeaders(response.headers);
-    return await response.json();
+
+    if (method !== 'DELETE') {
+      return await response.json();
+    }
   }
 
+  const get = _.partial(request, 'GET');
   const post = _.partial(request, 'POST');
   const put = _.partial(request, 'PUT');
+  const destroy = _.partial(request, 'DELETE');
 
   const withRoute = route => create(`${baseUrl}/${route}`, headersAuthentication);
 
-  return { post, put, withRoute };
+  return { get, post, put, destroy, withRoute };
 };
 
 module.exports = { create };
