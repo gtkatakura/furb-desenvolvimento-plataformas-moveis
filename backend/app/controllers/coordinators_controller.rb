@@ -1,4 +1,5 @@
 class CoordinatorsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_coordinator, only: [:show, :update, :destroy]
 
   # GET /coordinators
