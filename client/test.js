@@ -7,8 +7,11 @@ fetch('http://localhost:3000/auth', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    email: 'gt.katakura@gmail.com',
+    email: 'gt.katakura4@gmail.com',
     password: '12345678',
     password_confirmation: '12345678'
   }),
-}).then(el => el.json()).then(el => console.log(el)).catch(el => console.log(el))
+}).then(el => {
+  console.log(el.headers.get('access-token'));
+  return el.json();
+}).then(el => console.log(el)).catch(el => console.log(el))
