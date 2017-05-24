@@ -37,6 +37,7 @@ class CoordinatorsController < ApplicationController
   # DELETE /coordinators/1
   def destroy
     @coordinator.destroy
+    render json: true
   end
 
   private

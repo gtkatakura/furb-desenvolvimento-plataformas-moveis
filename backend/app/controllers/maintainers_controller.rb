@@ -37,6 +37,7 @@ class MaintainersController < ApplicationController
   # DELETE /maintainers/1
   def destroy
     @maintainer.destroy
+    render json: true
   end
 
   private

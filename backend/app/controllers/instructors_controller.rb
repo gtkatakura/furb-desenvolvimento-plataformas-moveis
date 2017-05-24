@@ -37,6 +37,7 @@ class InstructorsController < ApplicationController
   # DELETE /instructors/1
   def destroy
     @instructor.destroy
+    render json: true
   end
 
   private

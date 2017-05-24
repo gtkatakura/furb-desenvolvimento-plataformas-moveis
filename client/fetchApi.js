@@ -27,10 +27,7 @@ const create = (baseUrl, opts) => {
     });
 
     updateHeaders(response.headers);
-
-    if (method !== 'DELETE') {
-      return await response.json();
-    }
+    return await response.json();
   }
 
   const get = _.partial(request, 'GET');

@@ -10,10 +10,12 @@ const main = async () => {
     });
 
     const coordinator = await coordinatorsRepository.save({ user_id: 1 });
+    const coordinators = await coordinatorsRepository.all();
 
     await coordinatorsRepository.destroy(coordinator);
 
     console.log(coordinator);
+    console.log(coordinators);
   } catch (err) {
     console.log(err);
   }
