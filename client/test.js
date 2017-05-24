@@ -5,15 +5,17 @@ const main = async () => {
     const url = 'http://localhost:3000';
 
     const { coordinatorsRepository } = await signUp(url, {
-      email: 'gt.katakura41@gmail.com',
+      email: `gt.katakura${Date.now()}@gmail.com`,
       password: '12345678',
       password_confirmation: '12345678'
     });
 
-    const coordinator = await coordinatorsRepository.create({ user_id: 1 });
+    const coordinator = await coordinatorsRepository.save({ user_id: 1 });
 
     setTimeout(async () => {
-      const coordinator2 = await coordinatorsRepository.create({ user_id: 1 });
+      let coordinator2 = await coordinatorsRepository.save({ user_id: 1 });
+      console.log(coordinator2);
+      coordinator2 = await coordinatorsRepository.save(Object.assign(coordinator2, { user_id: 2 }));
       console.log(coordinator2);
     }, 4000);
 

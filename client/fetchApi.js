@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const fetch = require('node-fetch');
 
 const headers = {
@@ -5,9 +6,10 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-const create = (url, opts) => {
+const headersNameAuthentication = ['access-token', 'token-type', 'client', 'expiry', 'uid'];
+
+const create = (baseUrl, opts) => {
   const headersAuthentication = Object.assign({}, headers, opts);
-  const headersNameAuthentication = ['access-token', 'token-type', 'client', 'expiry', 'uid'];
 
   const updateHeaders = headers => {
     for (let headerName of headersNameAuthentication) {
@@ -17,18 +19,23 @@ const create = (url, opts) => {
     }
   };
 
-  const post = async (resourceName, data) => {
-    const response = await fetch(`${url}/${resourceName}`, {
-      method: 'POST',
+  const request = async (method, uri, data) => {
+    const response = await fetch(`${baseUrl}${uri}`, {
+      method: method,
       body: JSON.stringify(data),
       headers: headersAuthentication,
     });
 
     updateHeaders(response.headers);
     return await response.json();
-  };
+  }
 
-  return { post };
+  const post = _.partial(request, 'POST');
+  const put = _.partial(request, 'PUT');
+
+  const withRoute = route => create(`${baseUrl}/${route}`, headersAuthentication);
+
+  return { post, put, withRoute };
 };
 
 module.exports = { create };

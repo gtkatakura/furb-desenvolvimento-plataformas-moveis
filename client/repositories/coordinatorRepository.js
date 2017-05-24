@@ -1,7 +1,15 @@
-const create = fetchApi => {
+const { isNumber } = require('lodash');
+
+const create = apiBase => {
+  const api = apiBase.withRoute('coordinators');
+
   return {
-    create: async model => {
-      return await fetchApi.post(`coordinators`, model);
+    async save(model) {
+      if (isNumber(model.id)) {
+        return await api.put(`/${model.id}`, model);
+      }
+
+      return await api.post('/', model);
     }
   };
 };
