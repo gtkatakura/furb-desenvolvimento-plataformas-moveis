@@ -27,6 +27,7 @@ gem 'puma', '~> 3.7'
 
 gem 'devise_token_auth', '~> 0.1.42'
 gem 'omniauth', '~> 1.6.1'
+gem 'rails-i18n', '~> 5.0.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
