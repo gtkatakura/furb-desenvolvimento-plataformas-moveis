@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/mfklauberg/projects/furb/pyxis/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.m \
+  /Users/mfklauberg/projects/furb/pyxis/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTImageLoader.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTResizeMode.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
+  /Users/mfklauberg/projects/furb/pyxis/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h
