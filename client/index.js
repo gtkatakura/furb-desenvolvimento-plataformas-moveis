@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const FetchApi = require('./fetchApi');
-const CoordinatorRepository = require('./repositories/coordinatorRepository');
+const repositories = require('./repositories');
 
 const signUp = async (url, attributes) => {
   const fetchApi = FetchApi.create(url);
@@ -10,9 +10,10 @@ const signUp = async (url, attributes) => {
     throw new Error(_(full_messages).uniq().join('\n'));
   }
 
-  return {
-    coordinatorsRepository: CoordinatorRepository.create(fetchApi),
-  };
+  return _.mapValues(
+    _.mapKeys(repositories, _.rearg(_.camelCase, 1)),
+    repository => repository.create(fetchApi)
+  );
 };
 
 const signIn = async (url, attributes) => {
@@ -27,9 +28,10 @@ const signIn = async (url, attributes) => {
     throw new Error(_(errors).uniq().join('\n'));
   }
 
-  return {
-    coordinatorsRepository: CoordinatorRepository.create(fetchApi),
-  };
+  return _.mapValues(
+    _.mapKeys(repositories, _.rearg(_.camelCase, 1)),
+    repository => repository.create(fetchApi)
+  );
 }
 
 module.exports = { signUp, signIn };
