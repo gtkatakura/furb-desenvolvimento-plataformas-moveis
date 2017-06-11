@@ -1,9 +1,7 @@
 import React from 'react';
-import { Image, View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 import Components from './../../components';
-
-const logo = require('./../../assets/images/logo.png');
 
 const styles = StyleSheet.create({
   header: {
@@ -16,12 +14,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginTop: 30,
-  },
-  logo: {
-    transform: [
-      { scaleX: 1.25 },
-      { scaleY: 1.25 }
-    ]
   },
   forgot: {
     marginTop: 15,
@@ -64,7 +56,6 @@ class ForgotPasswordScreen extends React.Component {
     return (
       <View>
         <View style={styles.header}>
-          <Image style={styles.logo} source={logo} />
           <View style={styles.separator}></View>
           <Text style={styles.header_text}>Esqueceu sua senha? Sem problemas!</Text>
           <Text style={styles.header_text}>Informe seu email para um link para recuperar seu acesso</Text>

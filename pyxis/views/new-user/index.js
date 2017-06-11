@@ -1,21 +1,13 @@
 import React from 'react';
-import { Image, View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 import Components from './../../components';
-
-const logo = require('./../../assets/images/logo.png');
 
 const styles = StyleSheet.create({
   header: {
     paddingTop: `20%`,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  logo: {
-    transform: [
-      { scaleX: 1.25 },
-      { scaleY: 1.25 }
-    ]
   },
   newuser: {
     marginTop: 15,
@@ -63,7 +55,6 @@ class NewUserScreen extends React.Component {
     return (
       <View>
         <View style={styles.header}>
-          <Image style={styles.logo} source={logo} />
         </View>
         <View style={styles.newuser}>
           <Components.TextField value={this.state.name} name="name" placeholder="Nome" onChange={e => this.onFieldChange(e)}></Components.TextField>
