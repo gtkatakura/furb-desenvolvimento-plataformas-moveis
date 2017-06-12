@@ -6,6 +6,7 @@ import NewUser from './new-user';
 import Institute from './institute';
 import Course from './course';
 import Clazz from './clazz';
+import Semester from './semester';
 
 export default {
   Login,
@@ -14,5 +15,6 @@ export default {
   NewUser,
   Institute,
   Course,
-  Clazz
+  Clazz,
+  Semester
 }
