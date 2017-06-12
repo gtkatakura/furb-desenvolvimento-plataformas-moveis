@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
+import Components from './../../components';
 
-class HomeScreen extends Component {
+class HomeScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Home'
   };
@@ -10,19 +11,11 @@ class HomeScreen extends Component {
     super(props);
   }
 
-  get services() {
-    return this.props.navigation.state.params.services;
-  }
-
-  navigateTo(where) {
-    this.props.navigation.navigate(where, { services: this.services });
-  }
-
   defaultOptions() {
     return (
       <View>
-        <Button title="Criar nova instituição" onPress={() => this.navigateTo('NewInstitute')}></Button>
-        <Button title="Vincular-se a uma instituição" onPress={() => this.navigateTo('BindInstitute')}></Button>
+        <Button title="Criar nova instituição" onPress={() => this.navigate('NewInstitute')}></Button>
+        <Button title="Vincular-se a uma instituição" onPress={() => this.navigate('BindInstitute')}></Button>
       </View>
     );
   }
@@ -30,8 +23,8 @@ class HomeScreen extends Component {
   maintainerOptions() {
     return (
       <View>
-        <Button title="Criar novo curso" onPress={() => this.navigateTo('NewCourse')}></Button>
-        <Button title="Criar nova disciplina" onPress={() => this.navigateTo('NewDiscipline')}></Button>
+        <Button title="Criar novo curso" onPress={() => this.navigate('NewCourse')}></Button>
+        <Button title="Criar nova disciplina" onPress={() => this.navigate('NewDiscipline')}></Button>
       </View>
     );
   }
@@ -39,7 +32,7 @@ class HomeScreen extends Component {
   studentOptions() {
     return (
       <View>
-        <Button title="Ver curso" onPress={() => this.navigateTo('Course')}></Button>
+        <Button title="Ver curso" onPress={() => this.navigate('Course')}></Button>
       </View>
     );
   }

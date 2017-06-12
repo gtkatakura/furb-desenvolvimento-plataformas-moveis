@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-
 import Components from './../../components';
 
 const styles = StyleSheet.create({
@@ -16,7 +15,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class NewUserScreen extends React.Component {
+class NewUserScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Novo usuário'
   };
@@ -40,15 +39,11 @@ class NewUserScreen extends React.Component {
   }
 
   onConfirm() {
-    const { navigate } = this.props.navigation;
-
-    navigate('Home');
+    this.navigate('Home');
   }
 
   onCancel() {
-    const { navigate } = this.props.navigation;
-
-    navigate('Login');
+    this.navigate('Login');
   }
 
   render() {

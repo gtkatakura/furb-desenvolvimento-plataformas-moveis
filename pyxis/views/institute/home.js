@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
+import Components from './../../components';
 
 import InstituteServices from './../../services/institute'
 import CourseServices from './../../services/course';
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class NewInstituteScreen extends React.Component {
+class NewInstituteScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Instituição'
   };
@@ -68,15 +69,11 @@ class NewInstituteScreen extends React.Component {
   }
 
   navigateToCourse(course) {
-    const { navigate } = this.props.navigation;
-
-    navigate('Course', course)
+    this.navigate('Course', course)
   }
 
   createNewCourse() {
-    const { navigate } = this.props.navigation;
-
-    navigate('NewCourse', { 
+    this.navigate('NewCourse', { 
       instituteId: this.state.id,
       instituteName: this.state.name,
       //TODO: maintainer user

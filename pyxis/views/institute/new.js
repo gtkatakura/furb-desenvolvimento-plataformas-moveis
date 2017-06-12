@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, Text, View, Button, StyleSheet } from 'react-native';
-
+import Components from './../../components';
 import TextField from './../../components/TextField';
 
 import InstituteServices from './../../services/institute'
@@ -17,7 +17,7 @@ const style = StyleSheet.create({
   }
 })
 
-class NewInstituteScreen extends React.Component {
+class NewInstituteScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Nova instituição'
   };
@@ -28,10 +28,6 @@ class NewInstituteScreen extends React.Component {
     this.state = {
       name: ''
     };
-  }
-
-  get services() {
-    return this.props.navigation.state.params.services;
   }
 
   onFieldChange(event) {
@@ -54,13 +50,11 @@ class NewInstituteScreen extends React.Component {
 
       Alert.alert('Sucesso!');
     } catch (err) {
-      Alert.alert('Problema!', err.message);
+      Alert.alert('Oops', err.message);
     }
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <View style={style.base}>
         <View style={style.header}>
@@ -74,7 +68,7 @@ class NewInstituteScreen extends React.Component {
             onChange={e => this.onFieldChange(e)}>
           </TextField>
           <Button title="Salvar" onPress={() => this.createInstitute()}></Button>
-          <Button title="Voltar" onPress={() => navigate('Home')}></Button>
+          <Button title="Voltar" onPress={() => this.navigate('Home')}></Button>
         </View>
       </View>
     );

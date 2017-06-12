@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class ForgotPasswordScreen extends React.Component {
+class ForgotPasswordScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Resetar senha'
   };
@@ -47,9 +47,7 @@ class ForgotPasswordScreen extends React.Component {
   }
 
   onCancel() {
-    const { navigate } = this.props.navigation;
-
-    navigate('Login');
+    this.navigate('Login');
   }
 
   render() {

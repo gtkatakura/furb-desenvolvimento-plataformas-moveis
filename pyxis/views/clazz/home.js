@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import Components from './../../components';
 
 import ClazzService from './../../services/clazz';
 
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class ClazzScreen extends React.Component {
+class ClazzScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Turma'
   };
@@ -47,9 +48,7 @@ class ClazzScreen extends React.Component {
   }
 
   navigateToSemester(semester) {
-    const { navigate } = this.props.navigation;
-
-    navigate('Semester', semester);
+    this.navigate('Semester', semester);
   }
 
   render() {

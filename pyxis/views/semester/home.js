@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import Components from './../../components';
 
 const styles = StyleSheet.create({
   base: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class ClazzScreen extends React.Component {
+class ClazzScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Turma'
   };
@@ -36,15 +37,11 @@ class ClazzScreen extends React.Component {
   }
 
   createNewPeriod() {
-    const { navigate } = this.props.navigation;
-
-    navigate('NewPeriod', { semesterId: this.state.id });
+    this.navigate('NewPeriod', { semesterId: this.state.id });
   }
 
   navigateToPeriod(period) {
-    const { navigate } = this.props.navigation;
-
-    navigate('Period', period);
+    this.navigate('Period', period);
   }
 
   render() {

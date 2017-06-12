@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Alert, Image, View, Button, StyleSheet } from 'react-native';
 import AuthService from './../../services/auth';
+import Components from './../../components';
 
 const logo = require('./../../assets/images/logo.png');
-
-import Components from './../../components';
 
 const styles = StyleSheet.create({
   header: {
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class LoginScreen extends Component {
+class LoginScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Login'
   };
@@ -44,32 +43,26 @@ class LoginScreen extends Component {
   }
 
   async onLogin() {
-    const { navigate } = this.props.navigation;
-
     try {
-      const url = 'http://192.168.0.4:3000';
+      const url = 'http://10.13.5.60:3000';
 
       const services = await AuthService.signIn(url, {
         email: this.state.username,
         password: this.state.password
       });
 
-      navigate('Home', { services });
-    } catch (e) {
-      Alert.alert('Oops!', e.toString());
+      this.navigate('Home', { services });
+    } catch (err) {
+      Alert.alert('Oops!', err.message);
     }
   }
 
   onRegister() {
-    const { navigate } = this.props.navigation;
-
-    navigate('NewUser');
+    this.navigate('NewUser');
   }
   
   onForgetPassword() {
-    const { navigate } = this.props.navigation;
-
-    navigate('ForgotPassword');
+    this.navigate('ForgotPassword');
   }
 
   render() {

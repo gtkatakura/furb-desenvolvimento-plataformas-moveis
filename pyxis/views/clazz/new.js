@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import Components from './../../components';
 
 import TextField from './../../components/TextField';
 
@@ -15,7 +16,7 @@ const style = StyleSheet.create({
   }
 });
 
-class NewClazzScreen extends React.Component {
+class NewClazzScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Nova turma'
   };
@@ -50,7 +51,7 @@ class NewClazzScreen extends React.Component {
   }
 
   render() {
-    const { navigate, state } = this.props.navigation;
+    const { state } = this.props.navigation;
 
     return (
       <View style={style.base}>
@@ -61,7 +62,7 @@ class NewClazzScreen extends React.Component {
           <TextField name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}> </TextField>
           <TextField name="semesters" placeholder="Quantidade de semesters" value={this.state.semesters} onChange={e => this.onFieldChange(e)}> </TextField>
           <Button title="Salvar" onPress={() => this.createClazz()}></Button>
-          <Button title="Voltar" onPress={() => navigate('Course', { id: state.params ? state.params.courseId : -1})}></Button>
+          <Button title="Voltar" onPress={() => this.navigate('Course', { id: state.params ? state.params.courseId : -1})}></Button>
         </View>
       </View>
     );
