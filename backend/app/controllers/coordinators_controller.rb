@@ -5,7 +5,6 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators
   def index
     @coordinators = Coordinator.all
-
     render json: @coordinators
   end
 
