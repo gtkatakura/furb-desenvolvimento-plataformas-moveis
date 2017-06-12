@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     marginBottom: 7.5
   },
   field: {
-    height: 30
+    height: 40
   }
 });

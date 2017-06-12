@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Image, View, Button, StyleSheet } from 'react-native';
+import { Alert, Image, View, Button, StyleSheet } from 'react-native';
+import AuthService from './../../services/auth';
 
 const logo = require('./../../assets/images/logo.png');
 
@@ -42,10 +43,21 @@ class LoginScreen extends Component {
     this.setState(changeObject);
   }
 
-  onLogin() {
+  async onLogin() {
     const { navigate } = this.props.navigation;
 
-    navigate('Home');
+    try {
+      const url = 'http://192.168.0.4:3000';
+
+      const services = await AuthService.signIn(url, {
+        email: this.state.username,
+        password: this.state.password
+      });
+
+      navigate('Home', { services });
+    } catch (e) {
+      Alert.alert('Oops!', e.toString());
+    }
   }
 
   onRegister() {

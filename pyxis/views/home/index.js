@@ -6,12 +6,16 @@ class HomeScreen extends Component {
     title: 'Home'
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+
+  get services() {
+    return this.props.navigation.state.params.services;
   }
 
   navigateTo(where) {
-    this.props.navigation.navigate(where);
+    this.props.navigation.navigate(where, { services: this.services });
   }
 
   defaultOptions() {

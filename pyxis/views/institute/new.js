@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Alert, Text, View, Button, StyleSheet } from 'react-native';
 
 import TextField from './../../components/TextField';
 
@@ -30,6 +30,10 @@ class NewInstituteScreen extends React.Component {
     };
   }
 
+  get services() {
+    return this.props.navigation.state.params.services;
+  }
+
   onFieldChange(event) {
     const changeObject = {};
     changeObject[event.fieldName] = event.fieldValue;
@@ -37,13 +41,21 @@ class NewInstituteScreen extends React.Component {
     this.setState(changeObject);
   }
 
-  createInstitute() {
-    const institute = {
-      name: this.state.name,
-      //TODO: user
-    };
+  async createInstitute() {
+    try {
+      const maintainer = await this.services.maintainersRepository.save({
+        user_id: this.services.currentUser.id
+      });
 
-    InstituteServices.newInstitute()
+      const institute = await this.services.institutesRepository.save({
+        name: this.state.name,
+        maintainer_id: maintainer.id
+      });
+
+      Alert.alert('Sucesso!');
+    } catch (err) {
+      Alert.alert('Problema!', err.message);
+    }
   }
 
   render() {

@@ -20,7 +20,7 @@ class InstitutesController < ApplicationController
     if @institute.save
       render json: @institute, status: :created, location: @institute
     else
-      render json: @institute.errors, status: :unprocessable_entity
+      render json: @institute.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class InstitutesController < ApplicationController
     if @institute.update(institute_params)
       render json: @institute
     else
-      render json: @institute.errors, status: :unprocessable_entity
+      render json: @institute.errors.full_messages, status: :unprocessable_entity
     end
   end
 
