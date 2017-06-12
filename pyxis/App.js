@@ -11,8 +11,10 @@ const Pyxis = DrawerNavigator({
   NewUser: { screen: Views.NewUser },
   NewInstitute: { screen: Views.Institute.NewInstituteScreen },
   Institute: { screen: Views.Institute.InstituteScreen },
+  Course: { screen: Views.Course.CourseScreen },
   NewCourse: { screen: Views.Course.NewCourseScreen },
-  Course: { screen: Views.Course.CourseScreen }
+  Clazz: { screen: Views.Clazz.ClazzScreen },
+  NewClass: { screen: Views.Clazz.NewClassScreen }
 });
 
 AppRegistry.registerComponent('pyxis', () => Pyxis);
