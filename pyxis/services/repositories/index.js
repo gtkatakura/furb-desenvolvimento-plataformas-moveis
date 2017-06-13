@@ -7,4 +7,7 @@ export default {
     StudentsRepository: BaseRepository.create('students'),
     InstitutesRepository: BaseRepository.create('institutes'),
     CoursesRepository: BaseRepository.create('courses'),
+    DisciplinesRepository: BaseRepository.create('disciplines'),
+    GraduationSemestersRepository: BaseRepository.create('graduation_semesters'),
+    GraduationClassesRepository: BaseRepository.create('graduation_classes'),
 };

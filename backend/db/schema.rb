@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610004025) do
+ActiveRecord::Schema.define(version: 20170612234243) do
 
   create_table "coordinators", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,18 +20,43 @@ ActiveRecord::Schema.define(version: 20170610004025) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "name"
-    t.integer "institute_id"
-    t.integer "coordinator_id"
+    t.string "name", null: false
+    t.integer "institute_id", null: false
+    t.integer "coordinator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coordinator_id"], name: "index_courses_on_coordinator_id"
     t.index ["institute_id"], name: "index_courses_on_institute_id"
   end
 
+  create_table "disciplines", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_disciplines_on_course_id"
+  end
+
+  create_table "graduation_classes", force: :cascade do |t|
+    t.integer "year", null: false
+    t.integer "semesters", null: false
+    t.integer "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_graduation_classes_on_course_id"
+  end
+
+  create_table "graduation_semesters", force: :cascade do |t|
+    t.integer "number", null: false
+    t.integer "graduation_class_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["graduation_class_id"], name: "index_graduation_semesters_on_graduation_class_id"
+  end
+
   create_table "institutes", force: :cascade do |t|
-    t.string "name"
-    t.integer "maintainer_id"
+    t.string "name", null: false
+    t.integer "maintainer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maintainer_id"], name: "index_institutes_on_maintainer_id"

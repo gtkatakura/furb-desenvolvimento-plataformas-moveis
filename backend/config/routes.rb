@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :disciplines
+  resources :graduation_semesters
+  resources :graduation_classes
   resources :courses
   resources :institutes
   resources :instructors
