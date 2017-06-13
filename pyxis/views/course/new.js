@@ -40,7 +40,7 @@ class NewCourseScreen extends Components.PyxisComponent {
     this.setState(changeObject);
   }
 
-  async createinstitute() {
+  async createCourse() {
     try {
       const coordinator = await this.service.coordinatorsRepository.save({
         user_id: this.services.currentuser.id
