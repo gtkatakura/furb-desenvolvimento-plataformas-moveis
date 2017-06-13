@@ -60,9 +60,9 @@ class NewCourseScreen extends Components.PyxisComponent {
 
   render() {
     return (
-      <View style={style.base}>
-        <View style={style.header}>
-          <Text style={style.title}>Novo curso</Text>
+      <View style={styles.base}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Novo curso</Text>
         </View>
         <View>
           <TextField 

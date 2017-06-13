@@ -32,8 +32,6 @@ class LoginScreen extends Components.PyxisComponent {
   constructor(props) {
     super(props);
 
-    Alert.alert('oi')
-
     this.state = { password: '', username: '' };
   }
 
