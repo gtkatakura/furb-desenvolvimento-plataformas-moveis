@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Alert, View, Text, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
+
+import AuthService from './../../services/auth';
 
 const styles = StyleSheet.create({
   header: {
@@ -26,7 +28,6 @@ class NewUserScreen extends Components.PyxisComponent {
     this.state = {
       name: '',
       email: '',
-      username: '',
       password: '',
     };
   }
@@ -38,8 +39,19 @@ class NewUserScreen extends Components.PyxisComponent {
     this.setState(changeObject);
   }
 
-  onConfirm() {
-    this.navigate('Home');
+  async onConfirm() {
+    try {
+      const url = 'http://10.13.5.60:3000';
+      const services = await AuthService.signUp(url, {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      });
+
+      this.navigate('Home', { services });
+    } catch (err) {
+      Alert.alert('Oops!', err.message);
+    }
   }
 
   onCancel() {
@@ -54,8 +66,7 @@ class NewUserScreen extends Components.PyxisComponent {
         <View style={styles.newuser}>
           <Components.TextField value={this.state.name} name="name" placeholder="Nome" onChange={e => this.onFieldChange(e)}></Components.TextField>
           <Components.TextField value={this.state.email} name="email" placeholder="Email" onChange={e => this.onFieldChange(e)}></Components.TextField>
-          <Components.TextField value={this.state.username} name="username" placeholder="Username" onChange={e => this.onFieldChange(e)}></Components.TextField>
-          <Components.TextField value={this.state.password} name="password" placeholder="Password" onChange={e => this.onFieldChange(e)}></Components.TextField>
+          <Components.TextField value={this.state.password} name="password" placeholder="Password" secure={true} onChange={e => this.onFieldChange(e)}></Components.TextField>
         </View>
         <View>
           <Button title="Cadastrar" onPress={e => this.onConfirm()} />

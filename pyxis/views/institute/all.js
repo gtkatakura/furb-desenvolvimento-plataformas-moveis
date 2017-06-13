@@ -31,17 +31,13 @@ class AllInstitutesScreen extends Components.PyxisComponent {
   }
 
   async fetchInstitutes(that) {
-    const institutes = await this.services.nstitutesRepository.all();
-
+    const institutes = await this.services.institutesRepository.all();
     return institutes;
   }
 
-  componentDidMount() {
-    const institutes = this.fetchInstitutes();
-
-    this.setState({
-      institute
-    });
+  async componentDidMount() {
+    const institutes = await this.services.institutesRepository.all();
+    this.setState({ institutes });
   }
 
   navigateToInstitute(institute) {

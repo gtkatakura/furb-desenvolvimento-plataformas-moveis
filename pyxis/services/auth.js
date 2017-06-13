@@ -4,10 +4,14 @@ import repositories from './repositories';
 
 const signUp = async (url, attributes) => {
   const fetchApi = FetchApi.create(url);
-  const { status, data, errors: { full_messages } = {} } = await fetchApi.post('/auth', attributes);
+  let { status, data, errors } = await fetchApi.post('/auth', attributes);
+
+  if (_.has(errors, 'full_messages')) {
+    errors = errors.full_messages;
+  }
 
   if (status === 'error') {
-    throw new Error(_(full_messages).uniq().join('\n'));
+    throw new Error(_(errors).uniq().join('\n'));
   }
 
   return _.assign({ currentUser: data }, _.mapValues(

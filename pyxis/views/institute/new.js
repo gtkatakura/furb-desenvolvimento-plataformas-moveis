@@ -48,7 +48,8 @@ class NewInstituteScreen extends Components.PyxisComponent {
         maintainer_id: maintainer.id
       });
 
-      Alert.alert('Sucesso!');
+      Alert.alert('Registro efetuado com sucesso!');
+      this.navigate('AllInstitutes');
     } catch (err) {
       Alert.alert('Oops', err.message);
     }

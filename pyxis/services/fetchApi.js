@@ -29,7 +29,8 @@ const create = (baseUrl, opts) => {
     const responseAsJson = await response.json();
 
     if (response.status >= 400 && response.status <= 499) {
-      const message = _.join(_.get(responseAsJson, 'errors'), '\n') || responseAsJson;
+      const errors = _.get(responseAsJson, 'errors.full_messages') || _.get(responseAsJson, 'errors')
+      const message = _.join(_.uniq(errors), '\n') || responseAsJson;
       throw new Error(message);
     }
 

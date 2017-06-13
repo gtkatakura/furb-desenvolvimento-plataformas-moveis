@@ -47,8 +47,10 @@ class LoginScreen extends Components.PyxisComponent {
       const url = 'http://10.13.5.60:3000';
 
       const services = await AuthService.signIn(url, {
-        email: this.state.username,
-        password: this.state.password
+        email: 'gt.katakura@gmail.com',
+        password: '12345678'
+        // email: this.state.username,
+        // password: this.state.password
       });
 
       this.navigate('Home', { services });
