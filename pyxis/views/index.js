@@ -7,6 +7,7 @@ import Institute from './institute';
 import Course from './course';
 import Clazz from './clazz';
 import Semester from './semester';
+import Period from './period';
 
 export default {
   Login,
@@ -16,5 +17,6 @@ export default {
   Institute,
   Course,
   Clazz,
-  Semester
+  Semester,
+  Period
 }
