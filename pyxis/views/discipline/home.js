@@ -56,7 +56,7 @@ class DisciplineScreen extends Components.PyxisComponent {
       <View style={style.base}>
         <View style={style.header}>
           <Text style={style.title}>{this.discipline.name}</Text>
-          <View style={styles.header_actions}>
+          <View style={style.header_actions}>
             {
               // <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
             }

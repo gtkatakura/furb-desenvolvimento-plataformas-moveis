@@ -26,6 +26,9 @@ class AllInstitutesScreen extends Components.PyxisComponent {
 
   async componentDidMount() {
     const institutes = await this.services.institutesRepository.all();
+
+    console.log('insti', institutes);
+
     this.setState({ institutes });
   }
 

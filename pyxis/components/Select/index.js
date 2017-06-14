@@ -9,8 +9,16 @@ class Select extends React.Component {
     super(props);
 
     this.state = {
-      itemValue: { name: 'Selecione uma disciplina', value: 'olar' }
+      value: this.props.value.id,
     };
+  }
+
+  onChange(value, index) {
+    this.setState({
+      value
+    });
+
+    this.props.onValueChange && this.props.onValueChange(value, index);
   }
 
   render() {
@@ -24,8 +32,8 @@ class Select extends React.Component {
     return (
       <View style={styles.container}>
         <Picker
-          selectedValue={this.state.discipline}
-          onValueChange={() => this.props.onValueChange ? this.props.onValueChange : function(){}}
+          selectedValue={this.state.value}
+          onValueChange={this.onChange.bind(this)}
         >
           {
             items.map(item => {

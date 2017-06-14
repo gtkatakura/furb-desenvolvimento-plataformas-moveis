@@ -43,7 +43,7 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
   onSelectChange(value, index) {
     const discipline = this.state.disciplines[index];
-    Alert.alert(`${value} ${index}`)
+    // Alert.alert(`${value} ${index}`)
 
     this.setState({ discipline });
   }
@@ -90,7 +90,7 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
           <Components.TextField name="end" placeholder="Fim de periodo" value={this.state.end} onChange={e => this.onFieldChange(e)}></Components.TextField>
 
-          <Components.Select displayField="name" valueField="id" value={this.state.discipline.id} onValueChange={this.onSelectChange.bind(this)} items={this.state.disciplines}></Components.Select>
+          <Components.Select displayField="name" valueField="id" value={this.state.discipline} onValueChange={this.onSelectChange.bind(this)} items={this.state.disciplines}></Components.Select>
           
           <Components.PButton title="Salvar" onPress={() => this.createPeriod()}></Components.PButton>
           <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
