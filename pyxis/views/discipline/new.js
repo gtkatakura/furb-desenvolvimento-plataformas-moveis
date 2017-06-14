@@ -22,7 +22,7 @@ class NewDisciplineScreen extends Components.PyxisComponent {
   };
 
   get course() {
-    return this.props.navigate.state.params.course;
+    return this.props.navigation.state.params.course;
   }
 
   constructor(props) {

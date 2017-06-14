@@ -9,6 +9,7 @@ import Clazz from './clazz';
 import Semester from './semester';
 import Period from './period';
 import Discipline from './discipline';
+import Frequency from './frequency';
 
 export default {
   Login,
@@ -20,5 +21,6 @@ export default {
   Clazz,
   Semester,
   Period,
-  Discipline
+  Discipline,
+  Frequency
 }

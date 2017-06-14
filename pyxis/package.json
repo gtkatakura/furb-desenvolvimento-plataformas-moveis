@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start:android:dev": "set API_URL=http://192.168.0.4:3000 && node node_modules/react-native/local-cli/cli.js run-android",
+    "start:ios:dev": "export API_URL=http://192.168.1.7:3000 && node node_modules/react-native/local-cli/cli.js run-ios",
     "test": "jest"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "babel-jest": "20.0.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.1.1",
     "babel-preset-react-native": "1.9.1",
     "jest": "20.0.0",
     "react-test-renderer": "16.0.0-alpha.6"

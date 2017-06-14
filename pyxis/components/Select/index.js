@@ -25,7 +25,7 @@ class Select extends React.Component {
       <View style={styles.container}>
         <Picker
           selectedValue={this.state.discipline}
-          onValueChange={(itemValue, itemIndex) => this.setState({discipline: itemValue})}
+          onValueChange={() => this.props.onValueChange ? this.props.onValueChange : function(){}}
         >
           {
             items.map(item => {

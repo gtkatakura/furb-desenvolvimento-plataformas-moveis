@@ -19,20 +19,26 @@ class NewPeriodScreen extends Components.PyxisComponent {
     title: 'Novo período'
   };
 
+  get classz() {
+    return this.props.navigation.state.params.classz;
+  }
+
+  get period() {
+    return this.props.navigation.state.params.period;
+  }
+
+  get semester() {
+    return this.props.navigation.state.params.semester;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      semester_id: state.params.semester_id,
       start: '',
       end: '',
-      discipline: {
-        name: '',
-        value: ''
-      },
-      disciplines: []
+      discipline: { name: '', id: '' },
+      disciplines: [] 
     };
   }
 
@@ -43,24 +49,55 @@ class NewPeriodScreen extends Components.PyxisComponent {
     this.setState(changeObject);
   }
 
+  onSelectChange(value, index) {
+    const discipline = { 
+      name: value,
+      id: value
+    }
+
+    this.setState({
+      discipline
+    })
+  }
+
   async createPeriod() {
     try {
+      const model = {
+        graduation_semester_id: this.semester.id,
+        discipline_id: this.state.discipline.id,
+        period: {
+          start: this.state.start,
+          end: this.state.end
+        },
+        instructor_id: 1
+      };
 
-      //FAZER REQUEST API AQUI PARA SALVAR PERIODO
+      const periodDiscipline = await periodDisciplinesRepository.save(model);
 
       Alert('Sucesso!');
+      
+      this.navigate('Semester', {
+        semester: this.semester
+      });
     } catch (err) {
       Alert('Oops', err);
     }
   }
 
-  componentDidMount() {
-    //FAZER REQUEST API AQUI PARA PEGAR MATÉRIAS
+  async componentDidMount() {
+    const disciplines = await this.services.disciplinesRepository.all({
+      course_id: this.classz.course_id
+    });
 
     this.setState({
-      disciplines: [
-      ]
-    })
+      disciplines
+    });
+  }
+
+  goBack() {
+    this.navigate('Semester', {
+      semester: this.semester
+    });
   }
 
   goBack() {

@@ -17,48 +17,52 @@ class PeriodScreen extends Components.PyxisComponent {
     title: 'Período'
   };
 
+  get period() {
+    return this.props.navigation.state.params.period;
+  }
+
+  get semester() {
+    return this.props.navigation.state.params.semester;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      period_id: state.params.period_id,
-      semester_id: state.params.semester_id,
-      start: '',
-      end: '',
-      discipline: ''
-    };
+      discipline: { name: '' }
+    }
   }
 
-  async fetchPeriod() {
-    // PEGAR PERIODO AQUI
+  async componentDidMount() {
+    const discipline = await this.services.disciplinesRepository.find(this.period.discipline_id);
+
+    this.setState({
+      discipline
+    });
+  }
+
+  checkFrequency() {
+    this.navigate('Frequency', {
+      period: this.period
+    });
   }
 
   goBack() {
-    this.navigate('AllPeriods', { semester: { semester_id: this.state.semester_id }});
-  }
-
-  componentDidMount() {
-    const period = this.fetchPeriod();
-
-    this.setState({
-      start: period.start,
-      end: period.end,
-      discipline: discipline.name
+    this.navigate('AllPeriods', {
+      semester: this.semester
     });
   }
 
   render() {
+    const periodName = `${this.state.discipline.name} - ${this.period.start} - ${this.state.end}`;
+
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>Periodo</Text>
+          <Text style={styles.name}>{periodName}</Text>
         </View>
         <View>
-          <Text>{this.state.start}</Text>
-          <Text>{this.state.end}</Text>
-          <Text>{this.state.discipline}</Text>
+          <Button title="Verificar frequência" onPress={() => this.checkFrequency()}></Button>
           <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
