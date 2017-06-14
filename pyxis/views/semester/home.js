@@ -20,6 +20,10 @@ class SemesterScreen extends Components.PyxisComponent {
     return this.props.navigation.state.params.graduationSemester;
   }
 
+  get graduationClass() {
+    return this.props.navigation.state.params.graduationClass;
+  }
+
   constructor(props) {
     super(props);
 
@@ -60,7 +64,7 @@ class SemesterScreen extends Components.PyxisComponent {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>Semestre {this.graduationSemester.number}</Text>
+          <Text style={styles.name}>Turma {this.graduationClass.year} - Semestre {this.graduationSemester.number}</Text>
         </View>
         <View>
           <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>

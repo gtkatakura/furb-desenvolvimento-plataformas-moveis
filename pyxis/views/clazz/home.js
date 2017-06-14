@@ -44,7 +44,7 @@ class ClazzScreen extends Components.PyxisComponent {
   }
 
   navigateToSemester(graduationSemester) {
-    this.navigate('Semester', { graduationSemester });
+    this.navigate('Semester', { graduationSemester, graduationClass: this.graduationClass });
   }
 
   async remove() {
@@ -64,7 +64,9 @@ class ClazzScreen extends Components.PyxisComponent {
         <View>
           <Text style={styles.name}>{this.state.name}</Text>
           <View style={styles.header}>
-            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            {
+              //<Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            }
           </View>
         </View>
         <View>

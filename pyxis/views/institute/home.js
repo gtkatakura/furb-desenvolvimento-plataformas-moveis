@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   base: {
     padding: 24
   },
-  name: { 
+  name: {
     fontSize: 24
   },
   header: {
@@ -57,7 +57,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
       Alert.alert('Instituição removida com sucesso!');
 
       this.goBack();
-    } catch(err) {
+    } catch (err) {
       Alert.alert('Ops..', err);
     }
   }
@@ -65,10 +65,12 @@ class NewInstituteScreen extends Components.PyxisComponent {
   render() {
     return (
       <View style={styles.base}>
-        <View> 
+        <View>
           <Text style={styles.name}>{this.state.name}</Text>
           <View style={styles.header}>
-            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            {
+              // <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            }
           </View>
         </View>
         <View>

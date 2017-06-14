@@ -46,7 +46,7 @@ class DisciplineScreen extends Components.PyxisComponent {
       Alert.alert('Disciplina removida com sucesso!');
 
       this.goBack();
-    } catch(err) {
+    } catch (err) {
       Alert.alert('Ops..', err);
     }
   }
@@ -57,7 +57,9 @@ class DisciplineScreen extends Components.PyxisComponent {
         <View style={style.header}>
           <Text style={style.title}>{this.discipline.name}</Text>
           <View style={styles.header_actions}>
-            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            {
+              // <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            }
           </View>
         </View>
         <View>

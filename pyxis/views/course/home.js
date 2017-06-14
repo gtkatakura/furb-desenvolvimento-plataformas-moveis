@@ -49,14 +49,14 @@ class CourseScreen extends Components.PyxisComponent {
     });
   }
 
-    async remove() {
+  async remove() {
     try {
       const institute = await this.services.coursesRepository.destroy(this.course);
 
       Alert.alert('Curso removido com sucesso!');
 
       this.goBack();
-    } catch(err) {
+    } catch (err) {
       Alert.alert('Ops..', err);
     }
   }
@@ -67,7 +67,9 @@ class CourseScreen extends Components.PyxisComponent {
         <View>
           <Text style={styles.name}>{this.state.instituteName} - {this.state.name}</Text>
           <View style={styles.header}>
-            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            {
+              //<Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+            }
           </View>
         </View>
         <View>
