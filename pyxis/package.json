@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "start:android:dev": "set API_URL=http://192.168.0.4:3000 && node node_modules/react-native/local-cli/cli.js run-android",
+    "start:android:dev": "set API_URL=http://10.13.5.60:3000 && node node_modules/react-native/local-cli/cli.js run-android -- --reset-cache",
     "start:ios:dev": "export API_URL=http://10.13.10.169:3000 && node node_modules/react-native/local-cli/cli.js run-ios",
     "test": "jest"
   },

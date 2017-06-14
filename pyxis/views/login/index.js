@@ -45,8 +45,8 @@ class LoginScreen extends Components.PyxisComponent {
   async onLogin() {
     try {
       const services = await AuthService.signIn(process.env.API_URL, {
-        email: 'gt.katakura@gmail.com', // TODO: for tests
-        password: '12345678', // TODO: for tests
+        email: 'mfklauberg@gmail.com', // TODO: for tests
+        password: 'olar1234', // TODO: for tests
         // email: this.state.username,
         // password: this.state.password
       });

@@ -10,5 +10,7 @@ export default {
     DisciplinesRepository: BaseRepository.create('disciplines', 'discipline'),
     GraduationSemestersRepository: BaseRepository.create('graduation_semesters', 'graduation_semester'),
     GraduationClassesRepository: BaseRepository.create('graduation_classes', 'graduation_class'),
-    PeriodDisciplinesRepository: BaseRepository.create('period_disciplines', 'period_discipline')
+    PeriodDisciplinesRepository: BaseRepository.create('period_disciplines', 'period_discipline'),
+    FrequencyDaysRepository: BaseRepository.create('frequency_days', 'frequency_day'),
+    BeaconsRepository: BaseRepository.create('beacons', 'beacon'),
 };
