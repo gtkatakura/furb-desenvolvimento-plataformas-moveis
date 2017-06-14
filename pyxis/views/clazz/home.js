@@ -30,7 +30,7 @@ class ClazzScreen extends Components.PyxisComponent {
     const { state } = this.props.navigation;
 
     this.state = {
-      name: state.params ? state.params.name : '',
+      name: `Turma ${this.graduationClass.year}`,
       graduationSemesters: []
     };
   }
