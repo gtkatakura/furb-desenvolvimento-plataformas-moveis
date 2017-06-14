@@ -22,26 +22,29 @@ class ClazzScreen extends Components.PyxisComponent {
     const { state } = this.props.navigation;
 
     this.state = {
-      name: state.params ? state.params.name : '',
-      id: state.params ? state.params.id : -1,
-      periods: [
-
-      ]
+      course_id: this.state.course_id,
+      periods: [ ]
     };
-
-    this.fetchSemesterData();
-  }
-
-  fetchSemesterData() {
-    //TODO: api
-  }
-
-  createNewPeriod() {
-    this.navigate('NewPeriod', { semesterId: this.state.id });
   }
 
   navigateToPeriod(period) {
-    this.navigate('Period', period);
+    this.navigate('Period', {
+      period_id: this.state.period_id,
+      semester_id: this.state.semester_id
+    });
+  }
+
+  goToPeriod(period_id) {
+    this.navigate('Period', { 
+      semester_id: this.state.semester_id,
+      period_id
+    });
+  }
+
+  goBack() {
+    this.navigate('Course', {
+      course_id: this.state.course_id
+    });
   }
 
   render() {
@@ -57,11 +60,13 @@ class ClazzScreen extends Components.PyxisComponent {
           </Button>
           {
             this.state.periods.map(period => {
+              const title = `${period.discipline.name} - ${period.start} - ${period.end}`
+
               return (
                 <Button
                   key={period.id}
-                  title={period.name}
-                  onPress={() => this.navigateToPeriod(period)}>
+                  title={title}
+                  onPress={() => this.goToPeriod(period.id)}>
                 </Button>
               )
             })
