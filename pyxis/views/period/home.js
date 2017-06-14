@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 
 import Components from './../../components';
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   base: {
     padding: 24
   },
@@ -17,26 +17,24 @@ class PeriodScreen extends Components.PyxisComponent {
     title: 'Período'
   };
 
-  get periodDiscipline() {
-    return this.props.navigation.state.params.periodDiscipline;
+  get period() {
+    return this.props.navigation.state.params.period;
   }
 
-  get graduationSemester() {
-    return this.props.navigation.state.params.graduationSemester;
+  get semester() {
+    return this.props.navigation.state.params.semester;
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      start: this.periodDiscipline.period_start,
-      end: this.periodDiscipline.period_end,
-      discipline: this.periodDiscipline.discipline
+      discipline: { name: '' }
     }
   }
 
   async componentDidMount() {
-    const discipline = await this.services.disciplinesRepository.find(this.periodDiscipline.discipline.id);
+    const discipline = await this.services.disciplinesRepository.find(this.period.discipline_id);
 
     this.setState({
       discipline
@@ -45,27 +43,18 @@ class PeriodScreen extends Components.PyxisComponent {
 
   checkFrequency() {
     this.navigate('Frequency', {
-      periodDiscipline: this.periodDiscipline,
-      graduationSemester: this.graduationSemester
+      period: this.period,
+      semester: this.semester
     });
   }
 
-  formatDate(dateAsString) {
-    const date = new Date(dateAsString);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return [day, month, year].join('/');
-  }
-
   render() {
-    const periodName = `${this.state.discipline.name}: ${this.formatDate(this.state.start)} - ${this.formatDate(this.state.end)}`;
+    const periodName = `${this.state.discipline.name} - ${this.period.start} - ${this.state.end}`;
 
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.title}>{periodName}</Text>
+          <Text style={styles.name}>{periodName}</Text>
         </View>
         <View>
           <Components.PButton title="Verificar frequência" onPress={() => this.checkFrequency()}></Components.PButton>

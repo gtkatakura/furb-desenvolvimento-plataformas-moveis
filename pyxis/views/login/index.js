@@ -79,7 +79,7 @@ class LoginScreen extends Components.PyxisComponent {
               <Button title="Login" onPress={() => this.onLogin()}></Button>
             </View>
             <View style={{ marginBottom: 8 }}>
-              <Button title="Novo Cadastro" onPress={() => this.onRegister()}></Button>
+              <Button title="Novo Cadatro" onPress={() => this.onRegister()}></Button>
             </View>
             {/*<View style={{ marginBottom: 8 }}>
               <Button title="Esqueci a senha" onPress={() => this.onForgetPassword()}></Button>

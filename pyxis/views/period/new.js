@@ -19,8 +19,16 @@ class NewPeriodScreen extends Components.PyxisComponent {
     title: 'Novo período'
   };
 
-  get graduationSemester() {
-    return this.props.navigation.state.params.graduationSemester;
+  get classz() {
+    return this.props.navigation.state.params.classz;
+  }
+
+  get period() {
+    return this.props.navigation.state.params.period;
+  }
+
+  get semester() {
+    return this.props.navigation.state.params.semester;
   }
 
   constructor(props) {
@@ -42,41 +50,48 @@ class NewPeriodScreen extends Components.PyxisComponent {
   }
 
   onSelectChange(value, index) {
-    const discipline = this.state.disciplines[index];
-    Alert.alert(`${value} ${index}`)
+    const discipline = { 
+      name: value,
+      id: value
+    }
 
-    this.setState({ discipline });
+    this.setState({
+      discipline
+    })
   }
 
   async createPeriod() {
     try {
-      const instructor = await this.services.instructorsRepository.save({
-        user_id: this.services.currentUser.id
-      });
-
-      const periodDiscipline = {
-        graduation_semester_id: this.graduationSemester.id,
+      const model = {
+        graduation_semester_id: this.semester.id,
         discipline_id: this.state.discipline.id,
-        instructor_id: instructor.id,
         period: {
           start: this.state.start,
           end: this.state.end
         },
+        instructor_id: 1
       };
 
-      await this.services.periodDisciplinesRepository.save(periodDiscipline);
+      const periodDiscipline = await periodDisciplinesRepository.save(model);
 
-      Alert.alert('Registro efetuado com sucesso!');
-      this.goBack();
+      Alert('Sucesso!');
+      
+      this.navigate('Semester', {
+        semester: this.semester
+      });
     } catch (err) {
-      Alert.alert('Oops', err.message);
+      Alert('Oops', err);
     }
   }
 
   async componentDidMount() {
-    const disciplines = await this.services.disciplinesRepository.all();
+    const disciplines = await this.services.disciplinesRepository.all({
+      course_id: this.classz.course_id
+    });
 
-    this.setState({ disciplines });
+    this.setState({
+      disciplines
+    });
   }
 
   render() {
@@ -90,7 +105,7 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
           <Components.TextField name="end" placeholder="Fim de periodo" value={this.state.end} onChange={e => this.onFieldChange(e)}></Components.TextField>
 
-          <Components.Select displayField="name" valueField="id" value={this.state.discipline.id} onValueChange={this.onSelectChange.bind(this)} items={this.state.disciplines}></Components.Select>
+          <Components.Select value={this.state.discipline} displayField="name" valueField="id" items={this.state.disciplines}></Components.Select>
           
           <Components.PButton title="Salvar" onPress={() => this.createPeriod()}></Components.PButton>
           <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>

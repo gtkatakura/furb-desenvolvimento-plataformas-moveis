@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 
+import CourseService from './../../services/course';
+
 const styles = StyleSheet.create({
   base: {
     padding: 24

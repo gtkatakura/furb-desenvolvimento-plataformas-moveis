@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 
+import ClazzService from './../../services/clazz';
+
 const styles = StyleSheet.create({
   base: {
     padding: 24
@@ -43,8 +45,8 @@ class ClazzScreen extends Components.PyxisComponent {
     this.setState({ graduationSemesters });
   }
 
-  navigateToSemester(graduationSemester) {
-    this.navigate('Semester', { graduationSemester });
+  navigateToSemester(semester) {
+    this.navigate('Semester', semester);
   }
 
   async remove() {
@@ -80,7 +82,6 @@ class ClazzScreen extends Components.PyxisComponent {
             })
           }
         </View>
-        <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
       </View>
     );
   }

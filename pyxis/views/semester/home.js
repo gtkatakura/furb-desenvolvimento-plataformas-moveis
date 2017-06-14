@@ -16,62 +16,53 @@ class SemesterScreen extends Components.PyxisComponent {
     title: 'Turma'
   };
 
-  get graduationSemester() {
-    return this.props.navigation.state.params.graduationSemester;
+  get classz() {
+    return this.props.navigation.state.params.classz;
+  }
+
+  get semester() {
+    return this.props.navigation.state.params.semester;
+  }
+
+  get course() {
+    return this.props.navigation.state.params.course;
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      periodDisciplines: []
+      periods: [ ]
     };
   }
 
   async componentDidMount() {
-    const periodDisciplines = await this.services.periodDisciplinesRepository.all({
-      graduation_semester_id: this.graduationSemester.id
-    });
-
-    this.setState({ periodDisciplines })
+    const periods = await this.services.gra
   }
 
-  goToPeriod(periodDiscipline) {
+  goToPeriod(period) {
     this.navigate('Period', {
-      graduationSemester: this.graduationSemester,
-      periodDiscipline
+      semester: this.semester,
+      period
     });
-  }
-
-  createNewPeriod() {
-    this.navigate('NewPeriod', { graduationSemester: this.graduationSemester })
-  }
-
-  formatDate(dateAsString) {
-    const date = new Date(dateAsString);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return [day, month, year].join('/');
   }
 
   render() {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>Semestre {this.graduationSemester.number}</Text>
+          <Text style={styles.name}>Semestre {this.semester.number}</Text>
         </View>
         <View>
           <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>
           {
-            this.state.periodDisciplines.map(periodDiscipline => {
-              const title = `${periodDiscipline.discipline.name}: ${this.formatDate(periodDiscipline.period_start)} - ${this.formatDate(periodDiscipline.period_end)}`
-              return <Components.PButton key={periodDiscipline.id} title={title} onPress={() => this.goToPeriod(periodDiscipline)}></Components.PButton>
+            this.state.periods.map(period => {
+              const title = `${period.discipline.name} - ${period.start} - ${period.end}`
+
+              return <Components.PButton key={period.id} title={title} onPress={() => this.goToPeriod(period.id)}></Components.PButton>
             })
           }
         </View>
-        <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
       </View>
     );
   }
