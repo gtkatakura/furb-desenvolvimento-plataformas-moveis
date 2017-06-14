@@ -1,4 +1,5 @@
 class GraduationSemestersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_graduation_semester, only: [:show, :update, :destroy]
 
   # GET /graduation_semesters

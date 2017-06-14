@@ -20,7 +20,7 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
   };
 
   get course() {
-    return this.props.navigation.statem.params.course;
+    return this.props.navigation.state.params.course;
   }
 
   constructor(props) {
@@ -39,12 +39,6 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
 
     this.setState({
       disciplines
-    });
-  }
-
-  goBack() {
-    this.navigate('Course', {
-      course: this.course
     });
   }
 

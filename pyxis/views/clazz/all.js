@@ -40,12 +40,6 @@ class AllClassesScreen extends Components.PyxisComponent {
     this.setState({ classes });
   }
 
-  goBack() {
-    this.navigate('Course', {
-      course: this.course
-    });
-  }
-
   goToClass(classz) {
     this.navigate('Clazz', {
       course: this.course,

@@ -69,13 +69,6 @@ class FrequencyScreen extends Components.PyxisComponent {
     });
   }
 
-  goBack() {
-    this.navigate('Period', {
-      period: this.period,
-      semester: this.semester
-    });
-  }
-
   render() {
     const renderItem = ({ item }) => {
       const status = item.present ? 'Presente' : 'Ausente';

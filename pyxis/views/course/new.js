@@ -61,12 +61,6 @@ class NewCourseScreen extends Components.PyxisComponent {
     }
   }
 
-  goBack() {
-    this.navigate('Institute', {
-      institute: this.institute
-    });
-  }
-
   render() {
     return (
       <View style={styles.base}>

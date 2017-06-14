@@ -49,7 +49,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
       });
 
       Alert.alert('Registro efetuado com sucesso!');
-      this.navigate('AllInstitutes');
+      this.goBack();
     } catch (err) {
       Alert.alert('Oops', err.message);
     }
@@ -69,7 +69,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
             onChange={e => this.onFieldChange(e)}>
           </TextField>
           <Button title="Salvar" onPress={() => this.createInstitute()}></Button>
-          <Button title="Voltar" onPress={() => this.navigate('Home')}></Button>
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );

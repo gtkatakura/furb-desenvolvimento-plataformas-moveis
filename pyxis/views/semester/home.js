@@ -41,12 +41,6 @@ class ClazzScreen extends Components.PyxisComponent {
     });
   }
 
-  goBack() {
-    this.navigate('Course', {
-      course_id: this.state.course_id
-    });
-  }
-
   render() {
     return (
       <View style={styles.base}>

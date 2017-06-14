@@ -1,5 +1,3 @@
-//nome, curso
-
 import React from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import Components from './../../components';
@@ -29,7 +27,7 @@ class NewDisciplineScreen extends Components.PyxisComponent {
     super(props);
 
     this.state = {
-      course: this.course.name,
+      course_id: this.course.id,
       name: '',
     };
   }
@@ -43,25 +41,13 @@ class NewDisciplineScreen extends Components.PyxisComponent {
 
   async createDiscipline() {
     try {
-      const discipline = await this.services.disciplinesRepository.save({
-        course_id: this.course.id,
-        name: this.state.name
-      });
+      const discipline = await this.services.disciplinesRepository.save(this.state);
 
-      Alert('Sucesso!');
-
-      this.navigate('AllDisciplines', {
-        course: this.course
-      });
+      Alert.alert('Registro efetuado com sucesso!');
+      this.goBack();
     } catch (err) {
-      Alert('Oops', err);
+      Alert.alert('Oops', err.message);
     }
-  }
-
-  goBack() {
-    this.navigate('AllDisciplines', {
-      course: this.course
-    });
   }
 
   render() {
@@ -71,9 +57,7 @@ class NewDisciplineScreen extends Components.PyxisComponent {
           <Text style={style.title}>Nova disciplina</Text>
         </View>
         <View style={style.content}>
-          <Components.TextField name="name" placeholder="Nome" value={this.state.start} onChange={e => this.onFieldChange(e)}></Components.TextField>
-
-          <Components.Select value={this.state.course} displayField="name" valueField="id" items={this.state.courses}></Components.Select>
+          <Components.TextField name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}></Components.TextField>
 
           <Button title="Salvar" onPress={() => this.createDiscipline()}></Button>
           <Button title="Voltar" onPress={() => this.goBack()}></Button>

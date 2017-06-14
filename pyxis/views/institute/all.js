@@ -25,7 +25,6 @@ class AllInstitutesScreen extends Components.PyxisComponent {
     this.state = {
       institutes: []
     };
-
   }
 
   async componentDidMount() {
@@ -63,7 +62,7 @@ class AllInstitutesScreen extends Components.PyxisComponent {
           }
         </View>
         <View>
-          <Button title="Voltar" onPress={() => this.navigate('Home')}></Button>
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );

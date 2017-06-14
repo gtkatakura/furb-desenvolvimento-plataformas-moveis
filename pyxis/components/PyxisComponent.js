@@ -7,17 +7,18 @@ export default class PyxisComponent extends Component {
   }
 
   navigate(routeName, params = {}) {
-    const newParams = Object.assign({
-      services: this.services
-    }, params);
+    const navigateOldParams = _.get(this.props.navigation, 'state.params.navigateParams');
+    const newParams = {};
 
-    this.props.navigation.navigate(routeName, _.assign(params, {
-      navigateOldParams: [routeName, newParams]
-    }));
+    this.props.navigation.navigate(routeName, _.assign(newParams, {
+      services: this.services,
+      navigateParams: [routeName, newParams],
+      navigateOldParams
+    }, params));
   }
 
   goBack() {
     const navigateOldParams = _.get(this.props.navigation, 'state.params.navigateOldParams');
-    this.navigate(...navigateOldParams);
+    this.props.navigation.navigate(...navigateOldParams);
   }
 }

@@ -23,7 +23,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
     super(props);
 
     this.state = {
-      name: 'FURB',
+      name: this.institute.name,
       courses: []
     };
   }
@@ -38,15 +38,11 @@ class NewInstituteScreen extends Components.PyxisComponent {
   }
 
   navigateToCourse(course) {
-    this.navigate('Course', course)
+    this.navigate('Course', { course })
   }
 
   createNewCourse() {
     this.navigate('NewCourse', { institute: this.institute });
-  }
-
-  goBack() {
-    this.navigate('AllInstitutes');
   }
 
   render() {

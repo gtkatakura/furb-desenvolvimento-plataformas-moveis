@@ -36,12 +36,6 @@ class DisciplineScreen extends Components.PyxisComponent {
     };
   }
 
-  goBack() {
-    this.navigate('AllDisciplines', {
-      course: this.course
-    });
-  }
-
   remove() {
     this.services.disciplinesRepository.destroy(this.discipline);
   }

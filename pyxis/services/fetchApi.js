@@ -7,8 +7,7 @@ const headers = {
 
 const headersNameAuthentication = ['access-token', 'token-type', 'client', 'expiry', 'uid'];
 
-const create = (baseUrl, opts) => {
-  const headersAuthentication = Object.assign({}, headers, opts);
+const create = (baseUrl, headersAuthentication = {}) => {
 
   const updateHeaders = headers => {
     for (let headerName of headersNameAuthentication) {
@@ -28,7 +27,7 @@ const create = (baseUrl, opts) => {
 
     const response = await fetch(`${baseUrl}${uri}${query ? '?' + query : ''}`, _.assign(settings, {
       method: method,
-      headers: headersAuthentication,
+      headers: _.assign({}, headers, headersAuthentication),
     }));
 
     updateHeaders(response.headers);

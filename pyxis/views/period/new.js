@@ -94,16 +94,6 @@ class NewPeriodScreen extends Components.PyxisComponent {
     });
   }
 
-  goBack() {
-    this.navigate('Semester', {
-      semester: this.semester
-    });
-  }
-
-  goBack() {
-    this.navigate('Semester', { semester_id: this.state.semester_id });
-  }
-
   render() {
     return (
       <View style={style.base}>

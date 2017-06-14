@@ -20,7 +20,7 @@ class CoordinatorsController < ApplicationController
     if @coordinator.save
       render json: @coordinator, status: :created, location: @coordinator
     else
-      render json: @coordinator.errors, status: :unprocessable_entity
+      render json: @coordinator.errors.full_messages, status: :unprocessable_entity
     end
   end
 

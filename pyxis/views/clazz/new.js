@@ -51,12 +51,6 @@ class NewClazzScreen extends Components.PyxisComponent {
     //TODO API
   }
 
-  goBack() {
-    this.navigate('AllClasses', {
-      course: this.course
-    });
-  }
-
   render() {
     const { state } = this.props.navigation;
 

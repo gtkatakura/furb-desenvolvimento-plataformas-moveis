@@ -21,7 +21,7 @@ class MaintainersController < ApplicationController
     if @maintainer.save
       render json: @maintainer, status: :created, location: @maintainer
     else
-      render json: @maintainer.errors, status: :unprocessable_entity
+      render json: @maintainer.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class MaintainersController < ApplicationController
     if @maintainer.update(maintainer_params)
       render json: @maintainer
     else
-      render json: @maintainer.errors, status: :unprocessable_entity
+      render json: @maintainer.errors.full_messages, status: :unprocessable_entity
     end
   end
 

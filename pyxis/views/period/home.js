@@ -48,12 +48,6 @@ class PeriodScreen extends Components.PyxisComponent {
     });
   }
 
-  goBack() {
-    this.navigate('AllPeriods', {
-      semester: this.semester
-    });
-  }
-
   render() {
     const periodName = `${this.state.discipline.name} - ${this.period.start} - ${this.state.end}`;
 
