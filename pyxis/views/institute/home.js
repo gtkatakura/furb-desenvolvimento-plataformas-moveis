@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Alert, Text, View, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 
 import InstituteServices from './../../services/institute'
@@ -24,48 +24,17 @@ class NewInstituteScreen extends Components.PyxisComponent {
 
     this.state = {
       name: 'FURB',
-      courses: [
-        { name: 'Ciência da Computação', id: 1 },
-        { name: 'Direito', id: 2 },
-        { name: 'Medicina', id: 3 },
-        { name: 'Administração', id: 4 },
-        { name: 'Fisioterapia', id: 5 },
-        { name: 'Comércio Exterior', id: 6 },
-        { name: 'Música', id: 7 }
-      ]
+      courses: []
     };
-
-    this.fetchInstitute();
   }
 
-  fetchInstitute() {
-    const { state } = this.props.navigation;
-
-    if (!state.params) return;
-
-    this.setState({
-      
-    });
-
-    const { institute } = state.params;
-
-    InstituteServices.getInstitute(institute).then(response => {
-      this.setState(response.data);
-    });
-
-    CourseServices.listCourses(institute).then(response => {
-      this.setState(response.data.courses);
-    });
+  get institute() {
+    return this.props.navigation.state.params.institute;
   }
 
-  sortByName(a, b) {
-    const lowerA = a.name.toLowerCase();
-    const lowerB = b.name.toLowerCase();
-
-    if (lowerA < lowerB) return -1;
-    if (lowerA > lowerB) return 1;
-
-    return 0;
+  async componentDidMount() {
+    const courses = await this.services.coursesRepository.all({ institute_id: this.institute.id });
+    this.setState({ courses });
   }
 
   navigateToCourse(course) {
@@ -73,11 +42,11 @@ class NewInstituteScreen extends Components.PyxisComponent {
   }
 
   createNewCourse() {
-    this.navigate('NewCourse', { 
-      instituteId: this.state.id,
-      instituteName: this.state.name,
-      //TODO: maintainer user
-    });
+    this.navigate('NewCourse', { institute: this.institute });
+  }
+
+  goBack() {
+    this.navigate('AllInstitutes');
   }
 
   render() {
@@ -90,7 +59,6 @@ class NewInstituteScreen extends Components.PyxisComponent {
           <Button title="Novo curso" onPress={() => this.createNewCourse()}></Button>
           {
             this.state.courses
-              .sort((a, b) => this.sortByName(a, b))
               .map(course => {
                 return (
                   <Button 
@@ -101,6 +69,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
                 )
               })
           }
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );

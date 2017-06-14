@@ -19,11 +19,17 @@ const create = (baseUrl, opts) => {
   };
 
   const request = async (method, uri, data) => {
-    const response = await fetch(`${baseUrl}${uri}`, {
+    const esc = encodeURIComponent;
+    const query = method === 'GET' ? Object.keys(data || {})
+        .map(k => esc(k) + '=' + esc(data[k]))
+        .join('&') : undefined;
+
+    const settings = method === 'GET' ? {} : { body: JSON.stringify(data) };
+
+    const response = await fetch(`${baseUrl}${uri}${query ? '?' + query : ''}`, _.assign(settings, {
       method: method,
-      body: JSON.stringify(data),
       headers: headersAuthentication,
-    });
+    }));
 
     updateHeaders(response.headers);
     const responseAsJson = await response.json();

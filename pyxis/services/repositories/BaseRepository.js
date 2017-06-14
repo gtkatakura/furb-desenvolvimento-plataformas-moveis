@@ -4,7 +4,7 @@ const create = route => ({
   create(apiBase) {
     const api = apiBase.withRoute(route);
 
-    const all = async () => await api.get('/');
+    const all = async (filters = {}) => await api.get('/', filters);
     const find = async id => await api.get(`/${id}`);
     const save = async model => {
       if (isNumber(model.id)) {

@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course.where(institute_id: params[:institute_id])
 
     render json: @courses
   end

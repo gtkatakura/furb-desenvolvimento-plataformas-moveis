@@ -25,12 +25,14 @@ class NewCourseScreen extends Components.PyxisComponent {
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      instituteId: state.params ? state.params.instituteId : -1,
+      institute_id: this.institute.id,
       name: ''
     };
+  }
+
+  get institute() {
+    return this.props.navigation.state.params.institute;
   }
 
   onFieldChange(event) {
@@ -42,17 +44,18 @@ class NewCourseScreen extends Components.PyxisComponent {
 
   async createCourse() {
     try {
-      const coordinator = await this.service.coordinatorsRepository.save({
-        user_id: this.services.currentuser.id
+      const coordinator = await this.services.coordinatorsRepository.save({
+        user_id: this.services.currentUser.id
       });
 
       const course = await this.services.coursesRepository.save({
         name: this.state.name,
-        institute: this.state.instituteId,
+        institute_id: this.state.institute_id,
         coordinator_id: coordinator.id
       });
 
-      Alert.alert('Sucesso!');
+      Alert.alert('Registro efetuado com sucesso!');
+      this.navigate('Institute', { institute: this.institute });
     } catch (err) {
       Alert.alert('Oops', err.message);
     }

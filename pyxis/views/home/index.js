@@ -14,8 +14,7 @@ class HomeScreen extends Components.PyxisComponent {
   defaultOptions() {
     return (
       <View>
-        <Button title="Criar nova instituição" onPress={() => this.navigate('NewInstitute')}></Button>
-        <Button title="Vincular-se a uma instituição" onPress={() => this.navigate('AllInstitutes')}></Button>
+        <Button title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Button>
       </View>
     );
   }

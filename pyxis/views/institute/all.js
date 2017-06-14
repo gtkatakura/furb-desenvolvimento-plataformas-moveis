@@ -22,17 +22,10 @@ class AllInstitutesScreen extends Components.PyxisComponent {
   constructor(props) {
     super(props);
 
-    const institutes = this.fetchInstitutes(this);
-
     this.state = {
       institutes: []
     };
 
-  }
-
-  async fetchInstitutes(that) {
-    const institutes = await this.services.institutesRepository.all();
-    return institutes;
   }
 
   async componentDidMount() {
@@ -68,6 +61,9 @@ class AllInstitutesScreen extends Components.PyxisComponent {
                 )
               })
           }
+        </View>
+        <View>
+          <Button title="Voltar" onPress={() => this.navigate('Home')}></Button>
         </View>
       </View>
     );
