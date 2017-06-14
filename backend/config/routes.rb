@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :period_disciplines
   resources :disciplines
   resources :graduation_semesters
   resources :graduation_classes

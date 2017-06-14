@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612234243) do
+ActiveRecord::Schema.define(version: 20170614034502) do
 
   create_table "coordinators", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -74,6 +74,19 @@ ActiveRecord::Schema.define(version: 20170612234243) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_maintainers_on_user_id"
+  end
+
+  create_table "period_disciplines", force: :cascade do |t|
+    t.integer "graduation_semester_id", null: false
+    t.integer "discipline_id", null: false
+    t.datetime "period_start", null: false
+    t.datetime "period_end", null: false
+    t.integer "instructor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_id"], name: "index_period_disciplines_on_discipline_id"
+    t.index ["graduation_semester_id"], name: "index_period_disciplines_on_graduation_semester_id"
+    t.index ["instructor_id"], name: "index_period_disciplines_on_instructor_id"
   end
 
   create_table "students", force: :cascade do |t|

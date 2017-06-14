@@ -10,4 +10,5 @@ export default {
     DisciplinesRepository: BaseRepository.create('disciplines'),
     GraduationSemestersRepository: BaseRepository.create('graduation_semesters'),
     GraduationClassesRepository: BaseRepository.create('graduation_classes'),
+    PeriodDisciplinesRepository: BaseRepository.create('period_disciplines')
 };
