@@ -1,8 +1,7 @@
 import { isNumber } from 'lodash';
 
-const create = route => ({
+const create = (route, modelName) => ({
   create(apiBase) {
-    const modelName = route.substring(0, route.length - 1); // remove ends "s"
     const api = apiBase.withRoute(route);
 
     const all = async (filters = {}) => await api.get('/', filters);
