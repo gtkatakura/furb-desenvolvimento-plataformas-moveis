@@ -34,7 +34,7 @@ class PeriodDisciplinesController < ApplicationController
 
   # POST /period_disciplines
   def create
-    @period_discipline = PeriodDiscipline.new(period_discipline_params.merge(discipline_id: Discipline.first.id))
+    @period_discipline = PeriodDiscipline.new(period_discipline_params)
 
     if @period_discipline.save
       render json: @period_discipline, status: :created, location: @period_discipline
