@@ -67,7 +67,7 @@ class CourseScreen extends Components.PyxisComponent {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>${this.state.instituteName} {this.state.name}</Text>
+          <Text style={styles.name}>{this.state.instituteName} - {this.state.name}</Text>
           <View style={styles.header}>
             <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
           </View>

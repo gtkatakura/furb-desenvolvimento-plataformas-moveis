@@ -4,7 +4,7 @@ class GraduationClassesController < ApplicationController
 
   # GET /graduation_classes
   def index
-    @graduation_classes = GraduationClass.all
+    @graduation_classes = GraduationClass.where(course_id: params[:course_id])
 
     render json: @graduation_classes
   end
@@ -21,7 +21,7 @@ class GraduationClassesController < ApplicationController
     if @graduation_class.save
       render json: @graduation_class, status: :created, location: @graduation_class
     else
-      render json: @graduation_class.errors, status: :unprocessable_entity
+      render json: @graduation_class.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class GraduationClassesController < ApplicationController
     if @graduation_class.update(graduation_class_params)
       render json: @graduation_class
     else
-      render json: @graduation_class.errors, status: :unprocessable_entity
+      render json: @graduation_class.errors.full_messages, status: :unprocessable_entity
     end
   end
 

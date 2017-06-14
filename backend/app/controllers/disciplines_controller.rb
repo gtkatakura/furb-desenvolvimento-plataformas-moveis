@@ -21,7 +21,7 @@ class DisciplinesController < ApplicationController
     if @discipline.save
       render json: @discipline, status: :created, location: @discipline
     else
-      render json: @discipline.errors, status: :unprocessable_entity
+      render json: @discipline.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class DisciplinesController < ApplicationController
     if @discipline.update(discipline_params)
       render json: @discipline
     else
-      render json: @discipline.errors, status: :unprocessable_entity
+      render json: @discipline.errors.full_messages, status: :unprocessable_entity
     end
   end
 

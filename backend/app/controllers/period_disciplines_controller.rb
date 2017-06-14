@@ -21,7 +21,7 @@ class PeriodDisciplinesController < ApplicationController
     if @period_discipline.save
       render json: @period_discipline, status: :created, location: @period_discipline
     else
-      render json: @period_discipline.errors, status: :unprocessable_entity
+      render json: @period_discipline.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class PeriodDisciplinesController < ApplicationController
     if @period_discipline.update(period_discipline_params)
       render json: @period_discipline
     else
-      render json: @period_discipline.errors, status: :unprocessable_entity
+      render json: @period_discipline.errors.full_messages, status: :unprocessable_entity
     end
   end
 

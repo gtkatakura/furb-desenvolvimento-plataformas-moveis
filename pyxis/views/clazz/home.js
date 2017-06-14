@@ -22,8 +22,8 @@ class ClazzScreen extends Components.PyxisComponent {
     title: 'Turma'
   };
 
-  get classz() {
-    return this.props.navigation.state.params.classz;
+  get graduationClass() {
+    return this.props.navigation.state.params.graduationClass;
   }
 
   constructor(props) {
@@ -33,24 +33,16 @@ class ClazzScreen extends Components.PyxisComponent {
 
     this.state = {
       name: state.params ? state.params.name : '',
-      semesters: [
-        { name: 'Semestre 1', id: 1 },
-        { name: 'Semestre 2', id: 2 },
-        { name: 'Semestre 3', id: 3 },
-        { name: 'Semestre 4', id: 4 }
-      ]
+      graduationSemesters: []
     };
-
-    this.fetchClazzData();
   }
 
-  fetchClazzData() {
-    const { state } = this.props.navigation;
+  async componentDidMount() {
+    const graduationSemesters = await this.services.graduationSemestersRepository.all({
+      graduation_class_id: this.graduationClass.id
+    });
 
-    if (!state.params) return;
-
-    //TODO: api get semesters
-
+    this.setState({ graduationSemesters });
   }
 
   navigateToSemester(semester) {
@@ -59,13 +51,12 @@ class ClazzScreen extends Components.PyxisComponent {
 
   async remove() {
     try {
-      const institute = await this.services.graduationClassesRepository.destroy(this.classz);
+      const institute = await this.services.graduationClassesRepository.destroy(this.graduationClass);
 
       Alert.alert('Turma removida com sucesso!');
-
       this.goBack();
     } catch (err) {
-      Alert.alert('Ops..', err);
+      Alert.alert('Ops..', err.message);
     }
   }
 
@@ -80,12 +71,12 @@ class ClazzScreen extends Components.PyxisComponent {
         </View>
         <View>
           {
-            this.state.semesters.map(semester => {
+            this.state.graduationSemesters.map(graduationSemester => {
               return (
                 <Components.PButton
-                  key={semester.id}
-                  title={semester.name}
-                  onPress={() => this.navigateToSemester(semester)}>
+                  key={graduationSemester.id}
+                  title={`Semestre ${graduationSemester.number}`}
+                  onPress={() => this.navigateToSemester(graduationSemester)}>
                 </Components.PButton>
               )
             })

@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
     if @student.save
       render json: @student, status: :created, location: @student
     else
-      render json: @student.errors, status: :unprocessable_entity
+      render json: @student.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
     if @student.update(student_params)
       render json: @student
     else
-      render json: @student.errors, status: :unprocessable_entity
+      render json: @student.errors.full_messages, status: :unprocessable_entity
     end
   end
 

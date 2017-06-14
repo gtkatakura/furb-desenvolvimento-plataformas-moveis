@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
     if @course.save
       render json: @course, status: :created, location: @course
     else
-      render json: @course.errors, status: :unprocessable_entity
+      render json: @course.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       render json: @course
     else
-      render json: @course.errors, status: :unprocessable_entity
+      render json: @course.errors.full_messages, status: :unprocessable_entity
     end
   end
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Alert, View, Text, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 
 import TextField from './../../components/TextField';
@@ -29,6 +29,7 @@ class NewClazzScreen extends Components.PyxisComponent {
     super(props);
 
     this.state = {
+      course_id: this.course.id,
       year: '',
       semesters: 0
     };
@@ -41,14 +42,13 @@ class NewClazzScreen extends Components.PyxisComponent {
     this.setState(changeObject);
   }
 
-  createClazz() {
-    const params = {
-      courseId: this.state.courseId,
-      year: this.state.year,
-      semesters: this.state.semesters
-    };
-
-    //TODO API
+  async createClazz() {
+    try {
+      await this.services.graduationClassesRepository.save(this.state);
+      this.goBack();
+    } catch (err) {
+      Alert.alert('Oops', err.message);
+    }
   }
 
   render() {

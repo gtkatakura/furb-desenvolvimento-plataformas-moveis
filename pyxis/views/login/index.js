@@ -7,7 +7,7 @@ const logo = require('./../../assets/images/logo.png');
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: `50%`,
+    paddingTop: `10%`,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -75,9 +75,15 @@ class LoginScreen extends Components.PyxisComponent {
           <Components.TextField value={this.state.username} name="username" placeholder="Username" onChange={e => this.onFieldChange(e)}></Components.TextField>
           <Components.TextField value={this.state.password} name="password" placeholder="Password" secure={true} onChange={e => this.onFieldChange(e)}></Components.TextField>
           <View style={styles.login_actions}>
-            <Components.PButton title="Login" onPress={() => this.onLogin()}></Components.PButton>
-            <Components.PButton title="Novo Cadatro" onPress={() => this.onRegister()}></Components.PButton>
-            <Components.PButton title="Esqueci a senha" onPress={() => this.onForgetPassword()}></Components.PButton>
+            <View style={{ marginBottom: 8 }}>
+              <Button title="Login" onPress={() => this.onLogin()}></Button>
+            </View>
+            <View style={{ marginBottom: 8 }}>
+              <Button title="Novo Cadatro" onPress={() => this.onRegister()}></Button>
+            </View>
+            {/*<View style={{ marginBottom: 8 }}>
+              <Button title="Esqueci a senha" onPress={() => this.onForgetPassword()}></Button>
+            </View>*/}
           </View>
         </View>
       </View>

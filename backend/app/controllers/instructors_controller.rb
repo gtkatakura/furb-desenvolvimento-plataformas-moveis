@@ -21,7 +21,7 @@ class InstructorsController < ApplicationController
     if @instructor.save
       render json: @instructor, status: :created, location: @instructor
     else
-      render json: @instructor.errors, status: :unprocessable_entity
+      render json: @instructor.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class InstructorsController < ApplicationController
     if @instructor.update(instructor_params)
       render json: @instructor
     else
-      render json: @instructor.errors, status: :unprocessable_entity
+      render json: @instructor.errors.full_messages, status: :unprocessable_entity
     end
   end
 

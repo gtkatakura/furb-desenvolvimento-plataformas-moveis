@@ -29,7 +29,7 @@ class CoordinatorsController < ApplicationController
     if @coordinator.update(coordinator_params)
       render json: @coordinator
     else
-      render json: @coordinator.errors, status: :unprocessable_entity
+      render json: @coordinator.errors.full_messages, status: :unprocessable_entity
     end
   end
 

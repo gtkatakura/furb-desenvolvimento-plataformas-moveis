@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 import Components from './../../components';
 
+const style = StyleSheet.create({
+  base: {
+    padding: 24
+  },
+  header: {
+    marginBottom: 16
+  },
+  title: {
+    fontSize: 24
+  }
+});
+
 class HomeScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Home'
@@ -11,37 +23,17 @@ class HomeScreen extends Components.PyxisComponent {
     super(props);
   }
 
-  defaultOptions() {
-    return (
-      <View>
-        <Components.PButton title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Components.PButton>
-      </View>
-    );
-  }
-
-  maintainerOptions() {
-    return (
-      <View>
-        <Components.PButton title="Criar novo curso" onPress={() => this.navigate('NewCourse')}></Components.PButton>
-        <Components.PButton title="Criar nova disciplina" onPress={() => this.navigate('NewDiscipline')}></Components.PButton>
-      </View>
-    );
-  }
-
-  studentOptions() {
-    return (
-      <View>
-        <Components.PButton title="Ver curso" onPress={() => this.navigate('Course')}></Components.PButton>
-      </View>
-    );
-  }
-
   render() {
     return (
-      <View>
-        { this.defaultOptions() }
-        { this.maintainerOptions() }
-        { this.studentOptions() }
+      <View style={style.base}>
+        <View>
+          <View style={style.header}>
+            <Text style={style.title}>Home</Text>
+          </View>
+          <View>
+            <Components.PButton title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Components.PButton>
+          </View>
+        </View>
       </View>
     );
   }

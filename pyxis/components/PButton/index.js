@@ -1,9 +1,11 @@
 import React from 'react';
-import {View, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
-    marginBottom: 8
+    marginBottom: 8,
+    marginLeft: 40,
+    marginRight: 40,
   }
 });
 
