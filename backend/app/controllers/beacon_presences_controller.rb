@@ -21,7 +21,7 @@ class BeaconPresencesController < ApplicationController
     if @beacon_presence.save
       render json: @beacon_presence, status: :created, location: @beacon_presence
     else
-      render json: @beacon_presence.errors, status: :unprocessable_entity
+      render json: @beacon_presence.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class BeaconPresencesController < ApplicationController
     if @beacon_presence.update(beacon_presence_params)
       render json: @beacon_presence
     else
-      render json: @beacon_presence.errors, status: :unprocessable_entity
+      render json: @beacon_presence.errors.full_messages, status: :unprocessable_entity
     end
   end
 
