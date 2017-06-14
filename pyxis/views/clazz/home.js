@@ -61,11 +61,11 @@ class ClazzScreen extends Components.PyxisComponent {
           {
             this.state.semesters.map(semester => {
               return (
-                <Button
+                <Components.PButton
                   key={semester.id}
                   title={semester.name}
                   onPress={() => this.navigateToSemester(semester)}>
-                </Button>
+                </Components.PButton>
               )
             })
           }

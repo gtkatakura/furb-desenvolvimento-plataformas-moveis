@@ -11,33 +11,39 @@ const styles = StyleSheet.create({
   }
 });
 
-class ClazzScreen extends Components.PyxisComponent {
+class SemesterScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Turma'
   };
 
+  get classz() {
+    return this.props.navigation.state.params.classz;
+  }
+
+  get semester() {
+    return this.props.navigation.state.params.semester;
+  }
+
+  get course() {
+    return this.props.navigation.state.params.course;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      course_id: this.state.course_id,
       periods: [ ]
     };
   }
 
-  navigateToPeriod(period) {
-    this.navigate('Period', {
-      period_id: this.state.period_id,
-      semester_id: this.state.semester_id
-    });
+  async componentDidMount() {
+    const periods = await this.services.gra
   }
 
-  goToPeriod(period_id) {
-    this.navigate('Period', { 
-      semester_id: this.state.semester_id,
-      period_id
+  goToPeriod(period) {
+    this.navigate('Period', {
+      semester: this.semester,
+      period
     });
   }
 
@@ -45,24 +51,15 @@ class ClazzScreen extends Components.PyxisComponent {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>{this.state.name}</Text>
+          <Text style={styles.name}>Semestre {this.semester.number}</Text>
         </View>
         <View>
-          <Button
-            title="Criar novo periodo"
-            onPress={() => this.createNewPeriod()}>
-          </Button>
+          <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>
           {
             this.state.periods.map(period => {
               const title = `${period.discipline.name} - ${period.start} - ${period.end}`
 
-              return (
-                <Button
-                  key={period.id}
-                  title={title}
-                  onPress={() => this.goToPeriod(period.id)}>
-                </Button>
-              )
+              return <Components.PButton key={period.id} title={title} onPress={() => this.goToPeriod(period.id)}></Components.PButton>
             })
           }
         </View>
@@ -71,4 +68,4 @@ class ClazzScreen extends Components.PyxisComponent {
   }
 }
 
-export default ClazzScreen;
+export default SemesterScreen;

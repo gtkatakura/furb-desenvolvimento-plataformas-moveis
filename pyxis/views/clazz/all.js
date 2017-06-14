@@ -60,13 +60,13 @@ class AllClassesScreen extends Components.PyxisComponent {
           <Text style={style.title}>{this.state.name}</Text>
         </View>
         <View style={style.content}>
-          <Button title="Criar nova turma" onPress={() => this.createNewClass()}></Button>
+          <Components.PButton title="Criar nova turma" onPress={() => this.createNewClass()}></Components.PButton>
           {
-            this.classes.map(classz => {
-              return <Button title={`Turma ${classz.year}`} onPress={() => this.goToClass(classz)}></Button>
+            this.state.classes.map(classz => {
+              return <Components.PButton title={`Turma ${classz.year}`} onPress={() => this.goToClass(classz)}></Components.PButton>
             })
           }
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

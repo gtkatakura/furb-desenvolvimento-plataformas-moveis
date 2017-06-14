@@ -75,9 +75,9 @@ class LoginScreen extends Components.PyxisComponent {
           <Components.TextField value={this.state.username} name="username" placeholder="Username" onChange={e => this.onFieldChange(e)}></Components.TextField>
           <Components.TextField value={this.state.password} name="password" placeholder="Password" secure={true} onChange={e => this.onFieldChange(e)}></Components.TextField>
           <View style={styles.login_actions}>
-            <Button title="Login" onPress={() => this.onLogin()}></Button>
-            <Button title="Novo Cadatro" onPress={() => this.onRegister()}></Button>
-            <Button title="Esqueci a senha" onPress={() => this.onForgetPassword()}></Button>
+            <Components.PButton title="Login" onPress={() => this.onLogin()}></Components.PButton>
+            <Components.PButton title="Novo Cadatro" onPress={() => this.onRegister()}></Components.PButton>
+            <Components.PButton title="Esqueci a senha" onPress={() => this.onForgetPassword()}></Components.PButton>
           </View>
         </View>
       </View>

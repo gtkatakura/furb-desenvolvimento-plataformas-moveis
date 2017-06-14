@@ -52,20 +52,20 @@ class NewInstituteScreen extends Components.PyxisComponent {
           <Text style={styles.name}>{this.state.name}</Text>
         </View>
         <View>
-          <Button title="Novo curso" onPress={() => this.createNewCourse()}></Button>
+          <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
           {
             this.state.courses
               .map(course => {
                 return (
-                  <Button 
+                  <Components.PButton
                     key={course.id}
                     title={course.name}
                     onPress={() => this.navigateToCourse(course)}>
-                  </Button>
+                  </Components.PButton>
                 )
               })
           }
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

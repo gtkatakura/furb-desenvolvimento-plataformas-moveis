@@ -3,8 +3,6 @@ import { Alert, Text, View, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 import TextField from './../../components/TextField'; 
 
-import CourseServices from './../../services/course';
-
 const styles = StyleSheet.create({
   base: {
     padding: 24
@@ -54,8 +52,10 @@ class NewCourseScreen extends Components.PyxisComponent {
         coordinator_id: coordinator.id
       });
 
-      Alert.alert('Registro efetuado com sucesso!');
-      this.navigate('Institute', { institute: this.institute });
+      Alert.alert('Sucesso!');
+      this.navigate('Institute', {
+        institute: this.institute
+      });
     } catch (err) {
       Alert.alert('Oops', err.message);
     }
@@ -68,14 +68,9 @@ class NewCourseScreen extends Components.PyxisComponent {
           <Text style={styles.title}>Novo curso</Text>
         </View>
         <View>
-          <TextField 
-            name="name"
-            placeholder="Nome"
-            value={this.state.name}
-            onChange={e => this.onFieldChange(e)}>
-          </TextField>
-          <Button title="Salvar" onPress={() => this.createCourse()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <TextField  name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}></TextField>
+          <Components.PButton title="Salvar" onPress={() => this.createCourse()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

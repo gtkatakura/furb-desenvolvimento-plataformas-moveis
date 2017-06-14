@@ -89,7 +89,7 @@ class FrequencyScreen extends Components.PyxisComponent {
           <Text style={styles.title}>Frequencia</Text>
           <Text>Faltas: {percentage}</Text>
         </View>
-        <Button title="Voltar" onPress={() => this.goBack()}></Button>
+        <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         <ScrollView style={styles.content}>
           <FlatList
             data={this.state.frequency}

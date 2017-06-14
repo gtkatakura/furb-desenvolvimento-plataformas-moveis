@@ -14,7 +14,7 @@ class HomeScreen extends Components.PyxisComponent {
   defaultOptions() {
     return (
       <View>
-        <Button title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Button>
+        <Components.PButton title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Components.PButton>
       </View>
     );
   }
@@ -22,8 +22,8 @@ class HomeScreen extends Components.PyxisComponent {
   maintainerOptions() {
     return (
       <View>
-        <Button title="Criar novo curso" onPress={() => this.navigate('NewCourse')}></Button>
-        <Button title="Criar nova disciplina" onPress={() => this.navigate('NewDiscipline')}></Button>
+        <Components.PButton title="Criar novo curso" onPress={() => this.navigate('NewCourse')}></Components.PButton>
+        <Components.PButton title="Criar nova disciplina" onPress={() => this.navigate('NewDiscipline')}></Components.PButton>
       </View>
     );
   }
@@ -31,7 +31,7 @@ class HomeScreen extends Components.PyxisComponent {
   studentOptions() {
     return (
       <View>
-        <Button title="Ver curso" onPress={() => this.navigate('Course')}></Button>
+        <Components.PButton title="Ver curso" onPress={() => this.navigate('Course')}></Components.PButton>
       </View>
     );
   }

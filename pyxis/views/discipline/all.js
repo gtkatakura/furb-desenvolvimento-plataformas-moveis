@@ -62,13 +62,13 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
           <Text style={style.title}>Disciplinas</Text>
         </View>
         <View style={style.content}>
-        <Button title="Nova disciplina" onPress={() => this.createDiscipline()}></Button>
+        <Components.PButton title="Nova disciplina" onPress={() => this.createDiscipline()}></Components.PButton>
           {
             this.state.disciplines.map(discipline => {
-              return <Button title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Button>
+              return <Components.PButton title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Components.PButton>
             })
           }
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

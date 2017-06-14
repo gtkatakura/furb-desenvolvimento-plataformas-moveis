@@ -62,8 +62,8 @@ class ForgotPasswordScreen extends Components.PyxisComponent {
           <Components.TextField value={this.state.email} name="email" placeholder="Email" onChange={e => this.onFieldChange(e)}></Components.TextField>
         </View>
         <View>
-          <Button title="Enviar" onPress={e => this.onConfirm()} />
-          <Button title="Cancelar" onPress={e => this.onCancel()} />
+          <Components.PButton title="Enviar" onPress={e => this.onConfirm()} />
+          <Components.PButton title="Cancelar" onPress={e => this.onCancel()} />
         </View>
       </View>
     );

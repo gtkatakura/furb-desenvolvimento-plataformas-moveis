@@ -47,8 +47,8 @@ class DisciplineScreen extends Components.PyxisComponent {
           <Text style={style.title}>{this.discipline.name}</Text>
         </View>
         <View>
-          <Button title="Excluir" onPress={() => this.remove()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

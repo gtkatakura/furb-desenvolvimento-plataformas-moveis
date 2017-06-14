@@ -59,8 +59,8 @@ class NewDisciplineScreen extends Components.PyxisComponent {
         <View style={style.content}>
           <Components.TextField name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}></Components.TextField>
 
-          <Button title="Salvar" onPress={() => this.createDiscipline()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Salvar" onPress={() => this.createDiscipline()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

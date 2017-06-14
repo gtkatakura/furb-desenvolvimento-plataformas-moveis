@@ -107,8 +107,8 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
           <Components.Select value={this.state.discipline} displayField="name" valueField="id" items={this.state.disciplines}></Components.Select>
           
-          <Button title="Salvar" onPress={() => this.createPeriod()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Salvar" onPress={() => this.createPeriod()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

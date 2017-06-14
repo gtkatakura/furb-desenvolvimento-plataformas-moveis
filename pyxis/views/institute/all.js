@@ -47,22 +47,22 @@ class AllInstitutesScreen extends Components.PyxisComponent {
           <Text style={styles.name}>Instituições</Text>
         </View>
         <View>
-          <Button title="Nova instituição" onPress={() => this.createNewInstitute()}></Button>
+          <Components.PButton title="Nova instituição" onPress={() => this.createNewInstitute()}></Components.PButton>
           {
             this.state.institutes
               .map(institute => {
                 return (
-                  <Button 
+                  <Components.PButton
                     key={institute.id}
                     title={institute.name}
                     onPress={() => this.navigateToInstitute(institute)}>
-                  </Button>
+                  </Components.PButton>
                 )
               })
           }
         </View>
         <View>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

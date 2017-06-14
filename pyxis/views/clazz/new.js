@@ -29,7 +29,7 @@ class NewClazzScreen extends Components.PyxisComponent {
     super(props);
 
     this.state = {
-      name: '',
+      year: '',
       semesters: 0
     };
   }
@@ -44,7 +44,7 @@ class NewClazzScreen extends Components.PyxisComponent {
   createClazz() {
     const params = {
       courseId: this.state.courseId,
-      name: this.state.name,
+      year: this.state.year,
       semesters: this.state.semesters
     };
 
@@ -60,10 +60,10 @@ class NewClazzScreen extends Components.PyxisComponent {
           <Text style={style.title}>Nova turma</Text>
         </View>
         <View style={style.content}>
-          <TextField name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}> </TextField>
+          <TextField name="year" placeholder="Ano" value={this.state.year} onChange={e => this.onFieldChange(e)}> </TextField>
           <TextField name="semesters" placeholder="Quantidade de semesters" value={this.state.semesters} onChange={e => this.onFieldChange(e)}> </TextField>
-          <Button title="Salvar" onPress={() => this.createClazz()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Salvar" onPress={() => this.createClazz()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

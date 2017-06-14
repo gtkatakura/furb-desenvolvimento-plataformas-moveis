@@ -68,8 +68,8 @@ class NewUserScreen extends Components.PyxisComponent {
           <Components.TextField value={this.state.password} name="password" placeholder="Password" secure={true} onChange={e => this.onFieldChange(e)}></Components.TextField>
         </View>
         <View>
-          <Button title="Cadastrar" onPress={e => this.onConfirm()} />
-          <Button title="Cancelar" onPress={e => this.onCancel()} />
+          <Components.PButton title="Cadastrar" onPress={e => this.onConfirm()} />
+          <Components.PButton title="Cancelar" onPress={e => this.onCancel()} />
         </View>
       </View>
     );

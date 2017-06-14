@@ -68,8 +68,8 @@ class NewInstituteScreen extends Components.PyxisComponent {
             value={this.state.name}
             onChange={e => this.onFieldChange(e)}>
           </TextField>
-          <Button title="Salvar" onPress={() => this.createInstitute()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Salvar" onPress={() => this.createInstitute()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

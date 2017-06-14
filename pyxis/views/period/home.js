@@ -57,8 +57,8 @@ class PeriodScreen extends Components.PyxisComponent {
           <Text style={styles.name}>{periodName}</Text>
         </View>
         <View>
-          <Button title="Verificar frequência" onPress={() => this.checkFrequency()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Verificar frequência" onPress={() => this.checkFrequency()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

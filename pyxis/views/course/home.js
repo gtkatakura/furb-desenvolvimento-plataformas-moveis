@@ -53,9 +53,9 @@ class CourseScreen extends Components.PyxisComponent {
           <Text style={styles.name}>{this.state.name}</Text>
         </View>
         <View>
-          <Button title="Turmas" onPress={() => this.goToClasses()}></Button>
-          <Button title="Disciplinas" onPress={() => this.goToDisciplines()}></Button>
-          <Button title="Voltar" onPress={() => this.goBack()}></Button>
+          <Components.PButton title="Turmas" onPress={() => this.goToClasses()}></Components.PButton>
+          <Components.PButton title="Disciplinas" onPress={() => this.goToDisciplines()}></Components.PButton>
+          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );
