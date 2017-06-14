@@ -1,5 +1,3 @@
-//nome, curso
-
 import React from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import Components from './../../components';
@@ -54,7 +52,13 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
     this.navigate('Discipline', {
       course: this.course,
       discipline
-    })
+    });
+  }
+
+  createDiscipline() {
+    this.navigate('NewDiscipline', {
+      course: this.course
+    });
   }
 
   render() {
@@ -64,6 +68,7 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
           <Text style={style.title}>Disciplinas</Text>
         </View>
         <View style={style.content}>
+        <Button title="Nova disciplina" onPress={() => this.createDiscipline()}></Button>
           {
             this.state.disciplines.map(discipline => {
               return <Button title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Button>

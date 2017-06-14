@@ -28,14 +28,9 @@ class NewDisciplineScreen extends Components.PyxisComponent {
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
+      course: this.course.name,
       name: '',
-      course: { },
-      courses: [
-        { name: '', id: '' }
-      ]
     };
   }
 
@@ -48,26 +43,23 @@ class NewDisciplineScreen extends Components.PyxisComponent {
 
   async createDiscipline() {
     try {
-
-      //FAZER REQUEST API AQUI PARA SALVAR DISCIPLINA
+      const discipline = await this.services.disciplinesRepository.save({
+        course_id: this.course.id,
+        name: this.state.name
+      });
 
       Alert('Sucesso!');
+
+      this.navigate('AllDisciplines', {
+        course: this.course
+      });
     } catch (err) {
       Alert('Oops', err);
     }
   }
 
-  componentDidMount() {
-    //FAZER REQUEST API AQUI PARA PEGAR CURSOS
-
-    this.setState({
-      courses: [
-      ]
-    })
-  }
-
   goBack() {
-    this.navigate('Course', {
+    this.navigate('AllDisciplines', {
       course: this.course
     });
   }
