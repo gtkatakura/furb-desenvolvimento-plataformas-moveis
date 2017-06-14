@@ -11,6 +11,14 @@ const styles = StyleSheet.create({
   },
   name: { 
     fontSize: 24
+  },
+  header: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
+  },
+  goback: {
+    position: 'absolute',
+    bottom: 0
   }
 });
 
@@ -38,11 +46,23 @@ class NewInstituteScreen extends Components.PyxisComponent {
   }
 
   navigateToCourse(course) {
-    this.navigate('Course', { course })
+    this.navigate('Course', { course, institute: this.institute })
   }
 
   createNewCourse() {
     this.navigate('NewCourse', { institute: this.institute });
+  }
+
+  async remove() {
+    try {
+      const institute = await this.services.institutesRepository.destroy(this.institute);
+
+      Alert.alert('Instituição removida com sucesso!');
+
+      this.goBack();
+    } catch(err) {
+      Alert.alert('Ops..', err);
+    }
   }
 
   render() {
@@ -50,6 +70,9 @@ class NewInstituteScreen extends Components.PyxisComponent {
       <View style={styles.base}>
         <View> 
           <Text style={styles.name}>{this.state.name}</Text>
+          <View style={styles.header}>
+            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+          </View>
         </View>
         <View>
           <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
@@ -65,7 +88,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
                 )
               })
           }
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
+          <Components.PButton style={styles.goback} title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
     );

@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24
+  },
+  header: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
   }
 });
 
@@ -30,7 +34,8 @@ class CourseScreen extends Components.PyxisComponent {
     super(props);
 
     this.state = {
-      name: this.course.name
+      name: this.course.name,
+      instituteName: this.institute.name
     };
   }
 
@@ -46,11 +51,26 @@ class CourseScreen extends Components.PyxisComponent {
     });
   }
 
+    async remove() {
+    try {
+      const institute = await this.services.coursesRepository.destroy(this.course);
+
+      Alert.alert('Curso removido com sucesso!');
+
+      this.goBack();
+    } catch(err) {
+      Alert.alert('Ops..', err);
+    }
+  }
+
   render() {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>{this.state.name}</Text>
+          <Text style={styles.name}>${this.state.instituteName} {this.state.name}</Text>
+          <View style={styles.header}>
+            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+          </View>
         </View>
         <View>
           <Components.PButton title="Turmas" onPress={() => this.goToClasses()}></Components.PButton>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet } from 'react-native';
+import {View, Button, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
@@ -8,7 +8,11 @@ const styles = StyleSheet.create({
 });
 
 const PButton = ({ title, onPress}) => {
-  return <Button style={styles.button} title={title} onPress={onPress}></Button>
+  return (
+    <View style={styles.button}>
+      <Button title={title} onPress={onPress}></Button>
+    </View>
+  )
 };
 
 export default PButton;

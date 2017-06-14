@@ -59,7 +59,7 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
     return (
       <View style={style.base}>
         <View style={style.header}>
-          <Text style={style.title}>Disciplinas</Text>
+          <Text style={style.title}>Disciplinas de {this.course.name}</Text>
         </View>
         <View style={style.content}>
         <Components.PButton title="Nova disciplina" onPress={() => this.createDiscipline()}></Components.PButton>

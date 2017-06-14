@@ -10,13 +10,21 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24
-  }
+  },
+  header: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
+  },
 });
 
 class ClazzScreen extends Components.PyxisComponent {
   static navigationOptions = {
     title: 'Turma'
   };
+
+  get classz() {
+    return this.props.navigation.state.params.classz;
+  }
 
   constructor(props) {
     super(props);
@@ -43,12 +51,22 @@ class ClazzScreen extends Components.PyxisComponent {
 
     //TODO: api get semesters
 
-    ClazzService.getClazz(state.params.id)
-      .then(response => this.setState(response.data));
   }
 
   navigateToSemester(semester) {
     this.navigate('Semester', semester);
+  }
+
+  async remove() {
+    try {
+      const institute = await this.services.graduationClassesRepository.destroy(this.classz);
+
+      Alert.alert('Turma removida com sucesso!');
+
+      this.goBack();
+    } catch (err) {
+      Alert.alert('Ops..', err);
+    }
   }
 
   render() {
@@ -56,6 +74,9 @@ class ClazzScreen extends Components.PyxisComponent {
       <View style={styles.base}>
         <View>
           <Text style={styles.name}>{this.state.name}</Text>
+          <View style={styles.header}>
+            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+          </View>
         </View>
         <View>
           {

@@ -13,6 +13,10 @@ const style = StyleSheet.create({
   },
   title: {
     fontSize: 24
+  },
+  header_actions: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
   }
 });
 
@@ -35,19 +39,28 @@ class DisciplineScreen extends Components.PyxisComponent {
     this.state = {
     };
   }
+  async remove() {
+    try {
+      const institute = await this.services.disciplineRepository.destroy(this.discipline);
 
-  remove() {
-    this.services.disciplinesRepository.destroy(this.discipline);
+      Alert.alert('Disciplina removida com sucesso!');
+
+      this.goBack();
+    } catch(err) {
+      Alert.alert('Ops..', err);
+    }
   }
-  
+
   render() {
     return (
       <View style={style.base}>
         <View style={style.header}>
           <Text style={style.title}>{this.discipline.name}</Text>
+          <View style={styles.header_actions}>
+            <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
+          </View>
         </View>
         <View>
-          <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
           <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         </View>
       </View>
