@@ -21,13 +21,14 @@ class NewClazzScreen extends Components.PyxisComponent {
     title: 'Nova turma'
   };
 
+  get course() {
+    return this.props.navigation.state.params.course;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      courseId: state.params ? state.params.courseId : -1,
       name: '',
       semesters: 0
     };
@@ -47,7 +48,13 @@ class NewClazzScreen extends Components.PyxisComponent {
       semesters: this.state.semesters
     };
 
-    //TODO api
+    //TODO API
+  }
+
+  goBack() {
+    this.navigate('AllClasses', {
+      course: this.course
+    });
   }
 
   render() {
@@ -62,7 +69,7 @@ class NewClazzScreen extends Components.PyxisComponent {
           <TextField name="name" placeholder="Nome" value={this.state.name} onChange={e => this.onFieldChange(e)}> </TextField>
           <TextField name="semesters" placeholder="Quantidade de semesters" value={this.state.semesters} onChange={e => this.onFieldChange(e)}> </TextField>
           <Button title="Salvar" onPress={() => this.createClazz()}></Button>
-          <Button title="Voltar" onPress={() => this.navigate('Course', { id: state.params ? state.params.courseId : -1})}></Button>
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );

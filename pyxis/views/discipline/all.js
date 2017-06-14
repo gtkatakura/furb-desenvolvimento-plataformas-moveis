@@ -21,28 +21,40 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
     title: 'Disciplinas'
   };
 
+  get course() {
+    return this.props.navigation.statem.params.course;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      course_id: state.params.institute_id,
-      disciplines: [ ]
+      name: `Matérias de ${this.course.name}`,
+      disciplines: []
     };
   }
 
-  componentDidMount() {
-    //FAZER REQUEST API AQUI PARA PEGAR MATÉRIAS
+  async componentDidMount() {
+    const disciplines = await this.services.disciplinesRepository.all({
+      course_id: this.course.id
+    });
 
     this.setState({
-      disciplines: [
-      ]
-    })
+      disciplines
+    });
   }
 
   goBack() {
-    this.navigate('Course', { course_id: this.state.course_id });
+    this.navigate('Course', {
+      course: this.course
+    });
+  }
+
+  goToDiscipline(discipline) {
+    this.navigate('Discipline', {
+      course: this.course,
+      discipline
+    })
   }
 
   render() {
@@ -54,7 +66,7 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
         <View style={style.content}>
           {
             this.state.disciplines.map(discipline => {
-              return <Text key={discipline.id}>{discipline.name}</Text>
+              return <Button title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Button>
             })
           }
           <Button title="Voltar" onPress={() => this.goBack()}></Button>

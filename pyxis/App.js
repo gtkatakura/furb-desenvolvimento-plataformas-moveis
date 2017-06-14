@@ -19,6 +19,7 @@ const Pyxis = DrawerNavigator({
   NewPeriod: { screen: Views.Period.NewPeriodScreen },
   Period: { screen: Views.Period.PeriodScreen },
   AllInstitutes: { screen: Views.Institute.AllInstitutesScreen },
+  Discipline: { screen: Views.Discipline.DisciplineScreen },
   AllDisciplines: { screen: Views.Discipline.AllDisciplinesScreen },
   NewDiscipline: { screen: Views.Discipline.NewDisciplineScreen } 
 });

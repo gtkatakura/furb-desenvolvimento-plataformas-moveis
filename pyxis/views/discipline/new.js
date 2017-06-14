@@ -21,13 +21,16 @@ class NewDisciplineScreen extends Components.PyxisComponent {
     title: 'Nova matéria'
   };
 
+  get course() {
+    return this.props.navigate.state.params.course;
+  }
+
   constructor(props) {
     super(props);
 
     const { state } = this.props.navigation;
 
     this.state = {
-      institute_id: state.params.institute_id,
       name: '',
       course: { },
       courses: [
@@ -64,7 +67,9 @@ class NewDisciplineScreen extends Components.PyxisComponent {
   }
 
   goBack() {
-    this.navigate('Course', { course_id: this.state.course_id });
+    this.navigate('Course', {
+      course: this.course
+    });
   }
 
   render() {

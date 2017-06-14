@@ -61,6 +61,12 @@ class NewCourseScreen extends Components.PyxisComponent {
     }
   }
 
+  goBack() {
+    this.navigate('Institute', {
+      institute: this.institute
+    });
+  }
+
   render() {
     return (
       <View style={styles.base}>
@@ -75,7 +81,7 @@ class NewCourseScreen extends Components.PyxisComponent {
             onChange={e => this.onFieldChange(e)}>
           </TextField>
           <Button title="Salvar" onPress={() => this.createCourse()}></Button>
-          <Button title="Voltar" onPress={() => this.navigate('Home')}></Button>
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );

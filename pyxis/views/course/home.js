@@ -18,36 +18,38 @@ class CourseScreen extends Components.PyxisComponent {
     title: 'Curso'
   };
 
+  get course() {
+    return this.props.navigation.state.params.course;
+  }
+
+  get institute() {
+    return this.props.navigation.state.params.institute;
+  }
+
   constructor(props) {
     super(props);
 
-    const { state } = this.props.navigation;
-
     this.state = {
-      name: state.params ? state.params.name : '',
-      id: state.params ? state.params.id : -1,
-      classes: [
-        { name: '2010/I', id: 1 },
-        { name: '2014/I', id: 2 }
-      ]
+      name: this.course.name
     };
-
-    this.fetchCourseData();
   }
 
-  fetchCourseData() {
-    if (!this.state.id) return;
-
-    CourseService.getCourse(this.state.id)
-      .then(response => this.setState(response.data));
+  goToClasses() {
+    this.navigate('AllClasses', {
+      course: this.course
+    });
   }
 
-  createNewClass() {
-    this.navigate('NewClass', { courseId: this.state.id });
+  goToDisciplines() {
+    this.navigate('AllDisciplines', {
+      course: this.course
+    });
   }
 
-  navigateToClass(clazz) {
-    this.navigate('Clazz', clazz);
+  goBack() {
+    this.navigate('Institute', {
+      institute: this.institute
+    });
   }
 
   render() {
@@ -57,18 +59,9 @@ class CourseScreen extends Components.PyxisComponent {
           <Text style={styles.name}>{this.state.name}</Text>
         </View>
         <View>
-          <Button title="Criar nova turma" onPress={() => this.createNewClass()}></Button>
-          {
-            this.state.classes.map(clazz => {
-              return (
-                <Button
-                  key={clazz.id}
-                  title={clazz.name}
-                  onPress={() => this.navigateToClass(clazz)}>
-                </Button>
-              )
-            })
-          }
+          <Button title="Turmas" onPress={() => this.goToClasses()}></Button>
+          <Button title="Disciplinas" onPress={() => this.goToDisciplines()}></Button>
+          <Button title="Voltar" onPress={() => this.goBack()}></Button>
         </View>
       </View>
     );
