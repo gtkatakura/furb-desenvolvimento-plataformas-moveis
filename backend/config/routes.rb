@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :beacon_presences
+  resources :beacons
+  resources :frequency_days
   resources :period_disciplines
   resources :disciplines
   resources :graduation_semesters

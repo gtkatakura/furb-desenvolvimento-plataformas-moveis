@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { View, Text, Button, ScrollView, StyleSheet, FlatList } from 'react-native';
 
@@ -23,50 +24,34 @@ class FrequencyScreen extends Components.PyxisComponent {
     title: 'Frequencia'
   };
 
-  get period() {
-    return this.props.navigation.state.params.period;
-  }
-
-  get semester() {
-    return this.props.navigation.state.params.semester;
+  get periodDiscipline() {
+    return this.props.navigation.state.params.periodDiscipline;
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      frequency: [ ]
+      frequencyDays: []
     }
   }
 
   async componentDidMount() {
-    const frequency = [ //TODO substituir por API
-      { day: '01/01/2017', present: true },
-      { day: '07/01/2017', present: true },
-      { day: '14/01/2017', present: false },
-      { day: '21/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '28/01/2017', present: true },
-      { day: '35/01/2017', present: false },
-      { day: '42/01/2017', present: true },
-      { day: '49/01/2017', present: false }
-    ];
-
-    this.setState({
-      frequency
+    const frequencyDays = await this.services.frequencyDaysRepository.all({
+      period_discipline_id: this.periodDiscipline.id
     });
+
+    this.setState({ frequencyDays });
+  }
+
+  formatDate(dateAsString) {
+    const date = new Date(dateAsString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const format = _.partial(_.padStart, _, 2, '0');
+
+    return [day, month, year].map(format).join('/');
   }
 
   render() {
@@ -74,14 +59,14 @@ class FrequencyScreen extends Components.PyxisComponent {
       const status = item.present ? 'Presente' : 'Ausente';
       return (
         <View>
-          <Text>{item.day}</Text><Text style={styles.status}>{status}</Text>
+          <Text>{this.formatDate(item.date)}: {status}</Text>
         </View>
       )
     };
 
-    const percentage = this.state.frequency.filter(fr => !fr.present).length;
+    const percentage = this.state.frequencyDays.filter(fr => !fr.present).length;
 
-    const items = this.state.frequency.map((item, index) => Object.assign(item, { key: `${item.day}_${index}` }));
+    const items = this.state.frequencyDays.map((item, index) => Object.assign(item, { key: `${item.date}_${index}` }));
 
     return (
       <View style={styles.base}>
@@ -92,7 +77,7 @@ class FrequencyScreen extends Components.PyxisComponent {
         <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
         <ScrollView style={styles.content}>
           <FlatList
-            data={this.state.frequency}
+            data={this.state.frequencyDays}
             renderItem={renderItem}
           />
         </ScrollView>
@@ -102,17 +87,3 @@ class FrequencyScreen extends Components.PyxisComponent {
 }
 
 export default FrequencyScreen;
-
-      //  <FlatList
-      //     data={[
-      //       {key: 'Devin'},
-      //       {key: 'Jackson'},
-      //       {key: 'James'},
-      //       {key: 'Joel'},
-      //       {key: 'John'},
-      //       {key: 'Jillian'},
-      //       {key: 'Jimmy'},
-      //       {key: 'Julie'},
-      //     ]}
-      //     renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      //   />
