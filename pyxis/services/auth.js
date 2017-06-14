@@ -3,7 +3,7 @@ import FetchApi from './fetchApi';
 import repositories from './repositories';
 
 const signUp = async (url, attributes) => {
-  const fetchApi = FetchApi.create(url);
+  const fetchApi = FetchApi.create(url.trim());
   let { status, data, errors } = await fetchApi.post('/auth', attributes);
 
   if (_.has(errors, 'full_messages')) {
@@ -21,7 +21,7 @@ const signUp = async (url, attributes) => {
 };
 
 const signIn = async (url, attributes) => {
-  const fetchApi = FetchApi.create(url);
+  const fetchApi = FetchApi.create(url.trim());
   let { status, data, errors } = await fetchApi.post('/auth/sign_in', attributes);
 
   if (_.has(errors, 'full_messages')) {

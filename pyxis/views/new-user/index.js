@@ -41,8 +41,7 @@ class NewUserScreen extends Components.PyxisComponent {
 
   async onConfirm() {
     try {
-      const url = 'http://10.13.5.60:3000';
-      const services = await AuthService.signUp(url, {
+      const services = await AuthService.signUp(process.env.API_URL, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
