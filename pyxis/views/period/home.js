@@ -43,7 +43,8 @@ class PeriodScreen extends Components.PyxisComponent {
 
   checkFrequency() {
     this.navigate('Frequency', {
-      period: this.period
+      period: this.period,
+      semester: this.semester
     });
   }
 
