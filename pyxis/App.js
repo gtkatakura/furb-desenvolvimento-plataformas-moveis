@@ -6,7 +6,6 @@ import Views from './views';
 
 const Pyxis = DrawerNavigator({
   Login: { screen: Views.Login },
-  BeaconListener: { screen:  Views.BeaconListenerAndroid},
   Home: { screen: Views.Home },
   ForgotPassword: { screen: Views.ForgotPassword },
   NewUser: { screen: Views.NewUser },
