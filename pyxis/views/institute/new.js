@@ -3,8 +3,6 @@ import { Alert, Text, View, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
 import TextField from './../../components/TextField';
 
-import InstituteServices from './../../services/institute'
-
 const style = StyleSheet.create({
   base: {
     padding: 24

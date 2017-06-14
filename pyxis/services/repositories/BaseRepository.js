@@ -2,16 +2,21 @@ import { isNumber } from 'lodash';
 
 const create = route => ({
   create(apiBase) {
+    const modelName = route.substring(0, route.length - 1); // remove ends "s"
     const api = apiBase.withRoute(route);
 
     const all = async (filters = {}) => await api.get('/', filters);
     const find = async id => await api.get(`/${id}`);
     const save = async model => {
       if (isNumber(model.id)) {
-        return await api.put(`/${model.id}`, model);
+        return await api.put(`/${model.id}`, {
+          [modelName]: model
+        });
       }
 
-      return await api.post('/', model);
+      return await api.post('/', {
+        [modelName]: model
+      });
     };
 
     const destroy = async model => await api.destroy(`/${model.id}`);

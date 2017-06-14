@@ -6,4 +6,6 @@ class PeriodDiscipline < ApplicationRecord
   composed_of :period,
     mapping: [ %w(period_start start), %w(period_end end) ],
     converter: Proc.new { |hash| Period.new(hash[:start], hash[:end]) }
+
+  validates :discipline, :period_start, :period_end, presence: true
 end
