@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const style = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   header: {
     marginBottom: 16
@@ -61,15 +62,15 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
         <View style={style.header}>
           <Text style={style.title}>Disciplinas de {this.course.name}</Text>
         </View>
-        <View style={style.content}>
+        <ScrollView>
         <Components.PButton title="Nova disciplina" onPress={() => this.createDiscipline()}></Components.PButton>
           {
             this.state.disciplines.map((discipline, idx) => {
               return <Components.PButton key={`${idx}_${discipline.name}`} title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Components.PButton>
             })
           }
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

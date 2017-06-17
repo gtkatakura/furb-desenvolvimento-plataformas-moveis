@@ -1,11 +1,12 @@
 import React from 'react';
-import { Alert, Text, View, Button, StyleSheet } from 'react-native';
+import { Alert, Text, View, Button, StyleSheet, ScrollView } from 'react-native';
 import Components from './../../components';
 import TextField from './../../components/TextField';
 
 const style = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   header: {
     marginBottom: 16
@@ -59,7 +60,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
         <View style={style.header}>
           <Text style={style.title}>Nova instituição</Text>
         </View>
-        <View style={style.content}>
+        <ScrollView style={style.content}>
           <TextField
             name="name"
             placeholder="Nome"
@@ -67,8 +68,8 @@ class NewInstituteScreen extends Components.PyxisComponent {
             onChange={e => this.onFieldChange(e)}>
           </TextField>
           <Components.PButton title="Salvar" onPress={() => this.createInstitute()}></Components.PButton>
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

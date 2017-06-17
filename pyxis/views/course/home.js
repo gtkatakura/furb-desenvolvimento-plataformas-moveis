@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Text, View, Button, StyleSheet, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const styles = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   name: {
     fontSize: 24
@@ -72,11 +73,11 @@ class CourseScreen extends Components.PyxisComponent {
             }
           </View>
         </View>
-        <View>
+        <ScrollView>
           <Components.PButton title="Turmas" onPress={() => this.goToClasses()}></Components.PButton>
           <Components.PButton title="Disciplinas" onPress={() => this.goToDisciplines()}></Components.PButton>
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

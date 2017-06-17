@@ -1,10 +1,11 @@
 import React from 'react';
-import { Alert, Text, View, Button, StyleSheet } from 'react-native';
+import { Alert, Text, View, Button, StyleSheet, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const styles = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   name: {
     fontSize: 24
@@ -12,10 +13,6 @@ const styles = StyleSheet.create({
   header: {
     flexWrap: 'wrap',
     flexDirection: 'row'
-  },
-  goback: {
-    position: 'absolute',
-    bottom: 0
   }
 });
 
@@ -73,7 +70,7 @@ class NewInstituteScreen extends Components.PyxisComponent {
             }
           </View>
         </View>
-        <View>
+        <ScrollView>
           <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
           {
             this.state.courses
@@ -87,8 +84,8 @@ class NewInstituteScreen extends Components.PyxisComponent {
                 )
               })
           }
-          <Components.PButton style={styles.goback} title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        </ScrollView>
+        <Components.BackButton style={styles.goback} onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

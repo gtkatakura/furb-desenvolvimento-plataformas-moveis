@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const style = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   header: {
     marginBottom: 16
@@ -85,7 +86,7 @@ class NewPeriodScreen extends Components.PyxisComponent {
         <View style={style.header}>
           <Text style={style.title}>Novo período</Text>
         </View>
-        <View style={style.content}>
+        <ScrollView>
           <Components.TextField name="start" placeholder="Inicio de periodo" value={this.state.start} onChange={e => this.onFieldChange(e)}></Components.TextField>
 
           <Components.TextField name="end" placeholder="Fim de periodo" value={this.state.end} onChange={e => this.onFieldChange(e)}></Components.TextField>
@@ -93,8 +94,8 @@ class NewPeriodScreen extends Components.PyxisComponent {
           <Components.Select displayField="name" valueField="id" value={this.state.discipline} onValueChange={this.onSelectChange.bind(this)} items={this.state.disciplines}></Components.Select>
           
           <Components.PButton title="Salvar" onPress={() => this.createPeriod()}></Components.PButton>
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

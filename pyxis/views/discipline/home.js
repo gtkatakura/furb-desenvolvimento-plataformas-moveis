@@ -1,12 +1,11 @@
-//nome, curso
-
 import React from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const style = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   header: {
     marginBottom: 16
@@ -62,9 +61,9 @@ class DisciplineScreen extends Components.PyxisComponent {
             }
           </View>
         </View>
-        <View>
-          <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
-        </View>
+        <ScrollView>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }

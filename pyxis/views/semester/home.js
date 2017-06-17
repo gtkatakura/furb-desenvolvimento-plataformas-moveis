@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const styles = StyleSheet.create({
   base: {
-    padding: 24
+    padding: 24,
+    flex: 1
   },
   name: {
     fontSize: 24
@@ -66,7 +67,7 @@ class SemesterScreen extends Components.PyxisComponent {
         <View>
           <Text style={styles.name}>Turma {this.graduationClass.year} - Semestre {this.graduationSemester.number}</Text>
         </View>
-        <View>
+        <ScrollView>
           <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>
           {
             this.state.periodDisciplines.map(periodDiscipline => {
@@ -74,8 +75,8 @@ class SemesterScreen extends Components.PyxisComponent {
               return <Components.PButton key={periodDiscipline.id} title={title} onPress={() => this.goToPeriod(periodDiscipline)}></Components.PButton>
             })
           }
-        </View>
-        <Components.PButton title="Voltar" onPress={() => this.goBack()}></Components.PButton>
+        </ScrollView>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }
