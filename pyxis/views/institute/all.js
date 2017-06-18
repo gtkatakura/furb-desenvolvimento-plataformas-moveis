@@ -48,7 +48,9 @@ class AllInstitutesScreen extends Components.PyxisComponent {
           <Text style={styles.name}>Instituições</Text>
         </View>
         <ScrollView>
-          <Components.PButton title="Nova instituição" onPress={() => this.createNewInstitute()}></Components.PButton>
+          {
+            this.isMaintainer() && <Components.PButton title="Nova instituição" onPress={() => this.createNewInstitute()}></Components.PButton>
+          }
           {
             this.state.institutes
               .map(institute => {

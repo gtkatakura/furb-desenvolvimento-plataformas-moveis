@@ -71,7 +71,9 @@ class NewInstituteScreen extends Components.PyxisComponent {
           </View>
         </View>
         <ScrollView>
-          <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
+          {
+            this.isMaintainer() && <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
+          }
           {
             this.state.courses
               .map(course => {

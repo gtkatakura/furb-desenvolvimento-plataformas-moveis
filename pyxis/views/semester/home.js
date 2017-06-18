@@ -68,7 +68,9 @@ class SemesterScreen extends Components.PyxisComponent {
           <Text style={styles.name}>Turma {this.graduationClass.year} - Semestre {this.graduationSemester.number}</Text>
         </View>
         <ScrollView>
-          <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>
+          {
+            this.isMaintainer() && <Components.PButton title="Criar novo periodo" onPress={() => this.createNewPeriod()}></Components.PButton>
+          } 
           {
             this.state.periodDisciplines.map(periodDiscipline => {
               const title = `${periodDiscipline.discipline.name}: ${this.formatDate(periodDiscipline.period_start)} - ${this.formatDate(periodDiscipline.period_end)}`

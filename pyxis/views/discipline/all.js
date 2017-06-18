@@ -63,7 +63,9 @@ class AllDisciplinesScreen extends Components.PyxisComponent {
           <Text style={style.title}>Disciplinas de {this.course.name}</Text>
         </View>
         <ScrollView>
-        <Components.PButton title="Nova disciplina" onPress={() => this.createDiscipline()}></Components.PButton>
+          {
+            this.isMaintainer() && <Components.PButton title="Nova disciplina" onPress={() => this.createDiscipline()}></Components.PButton>
+          }
           {
             this.state.disciplines.map((discipline, idx) => {
               return <Components.PButton key={`${idx}_${discipline.name}`} title={discipline.name} onPress={() => this.goToDiscipline(discipline)}></Components.PButton>

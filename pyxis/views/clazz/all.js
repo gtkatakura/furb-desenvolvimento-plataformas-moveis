@@ -58,7 +58,9 @@ class AllClassesScreen extends Components.PyxisComponent {
           <Text style={style.title}>{this.state.name}</Text>
         </View>
         <ScrollView style={style.content}>
-          <Components.PButton title="Criar nova turma" onPress={() => this.createNewClass()}></Components.PButton>
+          {
+            this.isMaintainer() && <Components.PButton title="Criar nova turma" onPress={() => this.createNewClass()}></Components.PButton>
+          }
           {
             this.state.classes.map((clazz, idx) => {
               return <Components.PButton key={`${idx}_${clazz.year}`} title={`Turma ${clazz.year}`} onPress={() => this.goToClass(clazz)}></Components.PButton>

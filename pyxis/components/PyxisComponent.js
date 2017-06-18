@@ -21,4 +21,8 @@ export default class PyxisComponent extends Component {
     const navigateOldParams = _.get(this.props.navigation, 'state.params.navigateOldParams');
     this.props.navigation.navigate(...navigateOldParams);
   }
+
+  isMaintainer() {
+    return true;
+  }
 }
