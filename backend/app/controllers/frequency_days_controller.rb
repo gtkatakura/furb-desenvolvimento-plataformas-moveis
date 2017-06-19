@@ -47,6 +47,6 @@ class FrequencyDaysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def frequency_day_params
-      params.require(:frequency_day).permit(:date, :period_discipline_id)
+      params.require(:frequency_day).permit(:period_discipline_id, class_day: [:start, :end])
     end
 end

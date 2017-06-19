@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 20170614204750) do
   end
 
   create_table "frequency_days", force: :cascade do |t|
-    t.datetime "date", null: false
+    t.datetime "class_day_start", null: false
+    t.datetime "class_day_end", null: false
     t.integer "period_discipline_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
