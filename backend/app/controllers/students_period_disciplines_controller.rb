@@ -1,4 +1,5 @@
 class StudentsPeriodDisciplinesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_students_period_discipline, only: [:show, :update, :destroy]
 
   # GET /students_period_disciplines

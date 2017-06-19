@@ -5,6 +5,9 @@ class PeriodDiscipline < ApplicationRecord
 
   has_many :frequency_days
 
+  has_one :graduation_class, through: :graduation_semester
+  has_one :period_day, through: :graduation_class
+
   composed_of :period,
     mapping: [ %w(period_start start), %w(period_end end) ],
     converter: Proc.new { |hash| Period.new(hash[:start], hash[:end]) }
@@ -17,6 +20,27 @@ class PeriodDiscipline < ApplicationRecord
   def create_frequencies
     (period.start.to_datetime..period.end.to_datetime).select(&:workday?).each do |date|
       frequency_days.create!(date: date)
+
+      # first_class_day_starts = date.change(
+      #   hour: period_day.start_of_class.hour,
+      #   min: period_day.start_of_class.min
+      # )
+
+      # first_class_day_ends = first_class_day_starts + period_day.class_time.minutes
+
+      # second_class_day_starts = first_class_day_ends
+      # second_class_day_ends = second_class_day_starts + period_day.class_time.minutes
+
+      # three_class_day_starts = second_class_day_ends + period_day.interval_time.minutes
+      # three_class_day_ends = three_class_day_starts + period_day.class_time.minutes
+
+      # four_class_day_starts = three_class_day_ends
+      # four_class_day_ends = four_class_day_starts + period_day.class_time.minutes
+
+      # frequency_days.create!(start: first_class_day_starts, end: first_class_day_ends)
+      # frequency_days.create!(start: second_class_day_starts, end: second_class_day_ends)
+      # frequency_days.create!(start: three_class_day_starts, end: three_class_day_ends)
+      # frequency_days.create!(start: four_class_day_starts, end: four_class_day_ends)
     end
   end
 end

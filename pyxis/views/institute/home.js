@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Text, View, Button, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, Button, StyleSheet, ScrollView } from 'react-native';
 import Components from './../../components';
 
 const styles = StyleSheet.create({
@@ -16,81 +16,43 @@ const styles = StyleSheet.create({
   }
 });
 
-class NewInstituteScreen extends Components.PyxisComponent {
+export default class InstituteScreen extends Components.PyxisComponent {
   static navigationOptions = {
-    title: 'Instituição'
+    title: 'Instituto'
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: this.institute.name,
-      courses: []
-    };
-  }
 
   get institute() {
     return this.props.navigation.state.params.institute;
   }
 
-  async componentDidMount() {
-    const courses = await this.services.coursesRepository.all({ institute_id: this.institute.id });
-    this.setState({ courses });
+  constructor(props) {
+    super(props);
   }
 
-  navigateToCourse(course) {
-    this.navigate('Course', { course, institute: this.institute })
+  goToCourses() {
+    this.navigate('AllCourses', {
+      institute: this.institute
+    });
   }
 
-  createNewCourse() {
-    this.navigate('NewCourse', { institute: this.institute });
-  }
-
-  async remove() {
-    try {
-      const institute = await this.services.institutesRepository.destroy(this.institute);
-
-      Alert.alert('Instituição removida com sucesso!');
-
-      this.goBack();
-    } catch (err) {
-      Alert.alert('Ops..', err);
-    }
+  goToPeriodDays() {
+    this.navigate('AllPeriodDays', {
+      institute: this.institute
+    });
   }
 
   render() {
     return (
       <View style={styles.base}>
         <View>
-          <Text style={styles.name}>{this.state.name}</Text>
-          <View style={styles.header}>
-            {
-              // <Components.PButton title="Excluir" onPress={() => this.remove()}></Components.PButton>
-            }
-          </View>
+          <Text style={styles.name}>{this.institute.name}</Text>
         </View>
         <ScrollView>
-          {
-            this.isMaintainer() && <Components.PButton title="Novo curso" onPress={() => this.createNewCourse()}></Components.PButton>
-          }
-          {
-            this.state.courses
-              .map(course => {
-                return (
-                  <Components.PButton
-                    key={course.id}
-                    title={course.name}
-                    onPress={() => this.navigateToCourse(course)}>
-                  </Components.PButton>
-                )
-              })
-          }
+          <Components.PButton title="Cursos" onPress={() => this.goToCourses()}></Components.PButton>
+          <Components.PButton title="Períodos de Aula" onPress={() => this.goToPeriodDays()}></Components.PButton>
         </ScrollView>
-        <Components.BackButton style={styles.goback} onPress={() => this.goBack()}></Components.BackButton>
+        <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
     );
   }
 }
-
-export default NewInstituteScreen;

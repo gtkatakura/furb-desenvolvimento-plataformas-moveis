@@ -1,8 +1,9 @@
 class GraduationClass < ApplicationRecord
   has_many :graduation_semesters
   belongs_to :course
+  belongs_to :period_day
 
-  validates :course, :year, :semesters, presence: true
+  validates :course, :period_day, :year, :semesters, presence: true
 
   after_create :create_semesters
 

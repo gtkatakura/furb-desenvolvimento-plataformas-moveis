@@ -64,9 +64,11 @@ ActiveRecord::Schema.define(version: 20170614204750) do
     t.integer "year", null: false
     t.integer "semesters", null: false
     t.integer "course_id", null: false
+    t.integer "period_day_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_graduation_classes_on_course_id"
+    t.index ["period_day_id"], name: "index_graduation_classes_on_period_day_id"
   end
 
   create_table "graduation_semesters", force: :cascade do |t|
@@ -97,6 +99,17 @@ ActiveRecord::Schema.define(version: 20170614204750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_maintainers_on_user_id"
+  end
+
+  create_table "period_days", force: :cascade do |t|
+    t.integer "institute_id", null: false
+    t.string "name", null: false
+    t.integer "class_time", null: false
+    t.integer "interval_time", null: false
+    t.time "start_of_class", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["institute_id"], name: "index_period_days_on_institute_id"
   end
 
   create_table "period_disciplines", force: :cascade do |t|

@@ -8,6 +8,8 @@ class BeaconPresence < ApplicationRecord
 
   private
   def check_frequency
-    
+    # period_discipline = user.period_disciplines
+    #   .where('? BETWEEN period_disciplines.period_start AND period_disciplines.period_end', created_at)
+    #   .first
   end
 end

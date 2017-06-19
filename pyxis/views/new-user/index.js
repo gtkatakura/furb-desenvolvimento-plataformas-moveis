@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, View, Text, Button, StyleSheet } from 'react-native';
 import Components from './../../components';
+import env from './../../env';
 
 import AuthService from './../../services/auth';
 
@@ -41,7 +42,7 @@ class NewUserScreen extends Components.PyxisComponent {
 
   async onConfirm() {
     try {
-      const services = await AuthService.signUp(process.env.API_URL, {
+      const services = await AuthService.signUp(env.API_URL, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password

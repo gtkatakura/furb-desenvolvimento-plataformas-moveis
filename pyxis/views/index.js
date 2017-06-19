@@ -8,6 +8,7 @@ import Course from './course';
 import Clazz from './clazz';
 import Semester from './semester';
 import Period from './period';
+import PeriodDay from './period-day';
 import Discipline from './discipline';
 import Frequency from './frequency';
 
@@ -21,6 +22,7 @@ export default {
   Clazz,
   Semester,
   Period,
+  PeriodDay,
   Discipline,
   Frequency
 }

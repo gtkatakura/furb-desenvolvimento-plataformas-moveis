@@ -47,6 +47,6 @@ class GraduationClassesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def graduation_class_params
-      params.require(:graduation_class).permit(:year, :semesters, :course_id)
+      params.require(:graduation_class).permit(:year, :semesters, :course_id, :period_day_id)
     end
 end

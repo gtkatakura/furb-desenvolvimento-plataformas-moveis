@@ -1,5 +1,5 @@
 class PeriodDisciplinesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_period_discipline, only: [:show, :update, :destroy]
 
   # GET /period_disciplines

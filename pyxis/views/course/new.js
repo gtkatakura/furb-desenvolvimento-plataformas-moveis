@@ -53,7 +53,7 @@ class NewCourseScreen extends Components.PyxisComponent {
       });
 
       Alert.alert('Sucesso!');
-      this.navigate('Institute', {
+      this.navigate('AllCourses', {
         institute: this.institute
       });
     } catch (err) {

@@ -13,4 +13,5 @@ export default {
     PeriodDisciplinesRepository: BaseRepository.create('period_disciplines', 'period_discipline'),
     FrequencyDaysRepository: BaseRepository.create('frequency_days', 'frequency_day'),
     BeaconsRepository: BaseRepository.create('beacons', 'beacon'),
+    PeriodDaysRepository: BaseRepository.create('period_days', 'period_day'),
 };

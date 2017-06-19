@@ -44,8 +44,6 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
   onSelectChange(value, index) {
     const discipline = this.state.disciplines[index];
-    // Alert.alert(`${value} ${index}`)
-
     this.setState({ discipline });
   }
 

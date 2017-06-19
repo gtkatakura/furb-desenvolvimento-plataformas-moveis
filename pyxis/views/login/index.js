@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Image, View, Button, StyleSheet } from 'react-native';
 import AuthService from './../../services/auth';
 import Components from './../../components';
+import env from './../../env';
 
 const logo = require('./../../assets/images/logo.png');
 
@@ -44,9 +45,9 @@ class LoginScreen extends Components.PyxisComponent {
 
   async onLogin() {
     try {
-      const services = await AuthService.signIn(process.env.API_URL, {
-        email: 'mfklauberg@gmail.com', // TODO: for tests
-        password: 'olar1234', // TODO: for tests
+      const services = await AuthService.signIn(env.API_URL, {
+        email: 'gt.katakura@gmail.com', // TODO: for tests
+        password: '12345678', // TODO: for tests
         // email: this.state.username,
         // password: this.state.password
       });
