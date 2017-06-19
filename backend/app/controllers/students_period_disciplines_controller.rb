@@ -4,7 +4,8 @@ class StudentsPeriodDisciplinesController < ApplicationController
 
   # GET /students_period_disciplines
   def index
-    @students_period_disciplines = StudentsPeriodDiscipline.all
+    @students_period_disciplines = current_user.students_period_disciplines
+      .where(period_discipline_id: params[:period_discipline_id])
 
     render json: @students_period_disciplines
   end

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { Alert, View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 
 import Components from './../../components';
 
@@ -37,11 +37,34 @@ class PeriodScreen extends Components.PyxisComponent {
   }
 
   async componentDidMount() {
-    const discipline = await this.services.disciplinesRepository.find(this.periodDiscipline.discipline.id);
+    const periodDisciplines = await this.services.studentsPeriodDisciplinesRepository.all({
+      period_discipline_id: this.periodDiscipline.id
+    });
 
     this.setState({
-      discipline
+      hasPeriodDisciplines: periodDisciplines.length === 1,
+      discipline: this.periodDiscipline.discipline
     });
+  }
+
+  async createStudentsPeriodDiscipline() {
+    try {
+      const user = await this.services.usersRepository.find(this.services.currentUser.id);
+      const student = user.student || await this.services.studentsRepository.save({
+        user_id: this.services.currentUser.id
+      });
+
+      await this.services.studentsPeriodDisciplinesRepository.save({
+        student_id: student.id,
+        period_discipline_id: this.periodDiscipline.id
+      });
+
+      this.setState({
+        hasPeriodDisciplines: true
+      });
+    } catch (err) {
+      Alert.alert('Oops!', err.message);
+    }
   }
 
   checkFrequency() {
@@ -68,7 +91,8 @@ class PeriodScreen extends Components.PyxisComponent {
           <Text style={styles.title}>{periodName}</Text>
         </View>
         <ScrollView>
-          <Components.PButton title="Verificar frequência" onPress={() => this.checkFrequency()}></Components.PButton>
+          {this.state.hasPeriodDisciplines && <Components.PButton title="Verificar frequência" onPress={() => this.checkFrequency()}></Components.PButton>}
+          {!this.state.hasPeriodDisciplines && <Components.PButton title="Inscrever-se" onPress={() => this.createStudentsPeriodDiscipline()} />}
         </ScrollView>
         <Components.BackButton onPress={() => this.goBack()}></Components.BackButton>
       </View>
