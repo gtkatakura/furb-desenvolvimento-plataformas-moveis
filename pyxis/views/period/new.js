@@ -74,8 +74,9 @@ class NewPeriodScreen extends Components.PyxisComponent {
 
   async componentDidMount() {
     const disciplines = await this.services.disciplinesRepository.all();
+    const discipline = disciplines[0];
 
-    this.setState({ disciplines });
+    this.setState({ disciplines, discipline });
   }
 
   render() {

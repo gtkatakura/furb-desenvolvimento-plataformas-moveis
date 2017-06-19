@@ -49,22 +49,29 @@ class FrequencyScreen extends Components.PyxisComponent {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
     const format = _.partial(_.padStart, _, 2, '0');
 
-    return [day, month, year].map(format).join('/');
+    return [day, month, year].map(format).join('/') + ' ' + [hours, minutes].map(format).join(':');
   }
 
   render() {
+    const statusMapping = {
+      presence: 'Presente',
+      absence: 'Ausente'
+    };
+
     const renderItem = ({ item }) => {
-      const status = item.present ? 'Presente' : 'Ausente';
+      const status = statusMapping[item.status] || '';
       return (
         <View>
-          <Text>{this.formatDate(item.date)}: {status}</Text>
+          <Text>{this.formatDate(item.class_day.start)}: {status}</Text>
         </View>
       )
     };
 
-    const percentage = this.state.frequencyDays.filter(fr => !fr.present).length;
+    const percentage = this.state.frequencyDays.filter(fr => fr.status === 'absence').length;
 
     const items = this.state.frequencyDays.map((item, index) => Object.assign(item, { key: `${item.date}_${index}` }));
 

@@ -4,7 +4,24 @@ class FrequencyDaysController < ApplicationController
 
   # GET /frequency_days
   def index
-    @frequency_days = FrequencyDay.where(period_discipline_id: params[:period_discipline_id])
+    @frequency_days = FrequencyDay.includes(presences: :student)
+      .where(period_discipline_id: params[:period_discipline_id])
+
+    @frequency_days = @frequency_days.map do |frequency_day|
+      status = if Time.now >= frequency_day.class_day_start
+        frequency_day.presences.flat_map(&:student).include?(current_user.student) ? 'presence' : 'absence'
+      end
+
+      {
+        id: frequency_day.id,
+        period_discipline_id: frequency_day.period_discipline_id,
+        class_day: {
+          start: frequency_day.class_day.start,
+          end: frequency_day.class_day.end
+        },
+        status: status
+      }
+    end
 
     render json: @frequency_days
   end
