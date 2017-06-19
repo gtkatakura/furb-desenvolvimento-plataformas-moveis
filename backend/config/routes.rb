@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :presences
   resources :period_days
   resources :students_period_disciplines
   resources :beacon_presences

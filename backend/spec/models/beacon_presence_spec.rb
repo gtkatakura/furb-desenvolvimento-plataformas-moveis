@@ -20,16 +20,15 @@ describe BeaconPresence, type: :model do
   describe '#check_frequency' do
     before { students_period_discipline.save }
     before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 30)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 33)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 35)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 40)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 45)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 50)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 18, 55)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 19, 0)) }
+    before { BeaconPresence.create(user: user, beacon: beacon, created_at: Time.new(2010, 1, 1, 19, 5)) }
 
-    it { }
-
-    # it do
-    #   expect(period_discipline.frequency_days.map(&:class_day)).to eq([
-    #     Period.new('2010-01-01 18:30', '2010-01-01 19:20'),
-    #     Period.new('2010-01-01 19:20', '2010-01-01 20:10'),
-    #     Period.new('2010-01-01 20:20', '2010-01-01 21:10'),
-    #     Period.new('2010-01-01 21:10', '2010-01-01 22:00')
-    #   ])
-    # end
+    it { expect(period_discipline.frequency_days.first.presences.exists?).to eq(true) }
   end
 end
