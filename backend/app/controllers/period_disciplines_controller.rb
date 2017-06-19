@@ -57,6 +57,29 @@ class PeriodDisciplinesController < ApplicationController
     @period_discipline.destroy
   end
 
+  # GET /period_disciplines/1/presences_status
+  # def presences_status
+  #   frequency_days = @period_discipline.frequency_days.includes(presences: :student)
+
+  #   frequency_days = frequency_days.map do |frequency_day|
+  #     status = if Time.now >= frequency_day.class_day_start
+  #       frequency_day.presences.flat_map(&:student).include?(current_user.student) ? 'presence' : 'absence'
+  #     end
+
+  #     {
+  #       id: frequency_day.id,
+  #       period_discipline_id: frequency_day.period_discipline_id,
+  #       class_day: {
+  #         start: frequency_day.class_day.start,
+  #         end: frequency_day.class_day.end
+  #       },
+  #       status: status
+  #     }
+  #   end
+
+  #   render json: frequency_days
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_period_discipline
