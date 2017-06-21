@@ -47,7 +47,7 @@ class iOSBeacon {
           this.clearInterval();
         }
 
-        this.services.beaconPresence.save({
+        this.services.beaconPresencesRepository.save({
           beacon_id: beacon.id,
           user_id: this.services.currentUser.id
         });
@@ -104,7 +104,7 @@ class AndroidBeacon {
           this.clearInterval();
         }
 
-        this.services.beaconPresence.save({
+        this.services.beaconPresencesRepository.save({
           beacon_id: beacon.id,
           user_id: this.services.currentUser.id
         });
