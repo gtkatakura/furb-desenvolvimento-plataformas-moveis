@@ -4,6 +4,7 @@ import PyxisComponent from './PyxisComponent';
 import Select from './Select';
 import PButton from './PButton';
 import BackButton from './BackButton';
+import Beacon from './Beacon';
 
 export default {
   TextField,
@@ -11,5 +12,6 @@ export default {
   PyxisComponent,
   Select,
   PButton,
-  BackButton
+  BackButton,
+  Beacon
 };

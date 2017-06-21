@@ -11,6 +11,7 @@ import Period from './period';
 import PeriodDay from './period-day';
 import Discipline from './discipline';
 import Frequency from './frequency';
+import Beacon from './beacon';
 
 export default {
   Login,
@@ -24,5 +25,6 @@ export default {
   Period,
   PeriodDay,
   Discipline,
-  Frequency
+  Frequency,
+	Beacon
 }

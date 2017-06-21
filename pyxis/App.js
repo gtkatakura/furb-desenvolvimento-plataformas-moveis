@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, Button } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
 
+import Components from './components';
+
 import Views from './views';
 
 const Pyxis = DrawerNavigator({
@@ -27,6 +29,15 @@ const Pyxis = DrawerNavigator({
   NewDiscipline: { screen: Views.Discipline.NewDisciplineScreen },
   AllPeriodDays: { screen: Views.PeriodDay.AllPeriodDaysScreen },
   NewPeriodDay: { screen: Views.PeriodDay.NewPeriodDayScreen },
+  Beacon: { screen: Views.Beacon.BeaconScreen },
+  AllBeacons: { screen: Views.Beacon.ListBeaconsScreen },
+  NewBeacon: { screen: Views.Beacon.NewBeaconScreen }
 });
 
-AppRegistry.registerComponent('pyxis', () => Pyxis);
+const M = () => {
+  return (
+    <Pyxis></Pyxis>
+  );
+};
+
+AppRegistry.registerComponent('pyxis', () => M);

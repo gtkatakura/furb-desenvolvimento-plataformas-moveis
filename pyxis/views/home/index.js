@@ -24,6 +24,10 @@ class HomeScreen extends Components.PyxisComponent {
     super(props);
   }
 
+  componentDidMount() {
+    Components.Beacon.start(this.services);
+  }
+
   render() {
     return (
       <View style={style.base}>
@@ -33,6 +37,7 @@ class HomeScreen extends Components.PyxisComponent {
         <ScrollView>
           <View>
             <Components.PButton title="Instituições" onPress={() => this.navigate('AllInstitutes')}></Components.PButton>
+            <Components.PButton title="Beacons" onPress={() => this.navigate('AllBeacons')}></Components.PButton>
           </View>
         </ScrollView>
         <Components.BackButton onPress={() => this.goBack}></Components.BackButton>
