@@ -73,7 +73,7 @@ class FrequencyScreen extends Components.PyxisComponent {
 
     const percentage = this.state.frequencyDays.filter(fr => fr.status === 'absence').length;
 
-    const items = this.state.frequencyDays.map((item, index) => Object.assign(item, { key: `${item.date}_${index}` }));
+    const items = this.state.frequencyDays.filter(fr => !fr.status).map((item, index) => Object.assign(item, { key: `${item.date}_${index}` }));
 
     return (
       <View style={styles.base}>

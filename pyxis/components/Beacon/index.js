@@ -43,8 +43,9 @@ class iOSBeacon {
           return data.beacons[0] ? data.beacons[0].uuid === beacon.name : false;
         });
 
-        if (beacon < 0) {
+        if (!beacon) {
           this.clearInterval();
+          return;
         }
 
         this.services.beaconPresencesRepository.save({
@@ -55,7 +56,7 @@ class iOSBeacon {
         console.log('Presença confirmada', data);
 
         this.clearInterval();
-      }, (10000)); //(2 * 60 * 1000)); //two minutes
+      }, (2 * 60 * 1000)); //(2 * 60 * 1000)); //two minutes
     }
   }
 
@@ -100,8 +101,9 @@ class AndroidBeacon {
           return data.beacons[0] ? data.beacons[0].uuid === beacon.name : false;
         });
 
-        if (beacon < 0) {
+        if (!beacon) {
           this.clearInterval();
+          return;
         }
 
         this.services.beaconPresencesRepository.save({
@@ -112,7 +114,7 @@ class AndroidBeacon {
         console.log('Presença confirmada', data);
 
         this.clearInterval();
-      }, (10000)); //(2 * 60 * 1000)); //two minutes
+      }, 1000); //(2 * 60 * 1000)); //two minutes
     }
   }
 

@@ -16,4 +16,5 @@ export default {
     PeriodDaysRepository: BaseRepository.create('period_days', 'period_day'),
     StudentsPeriodDisciplinesRepository: BaseRepository.create('students_period_disciplines', 'students_period_discipline'),
     UsersRepository: BaseRepository.create('users', 'user'),
+    BeaconPresencesRepository: BaseRepository.create('beacon_presences', 'beacon_presence'),
 };
